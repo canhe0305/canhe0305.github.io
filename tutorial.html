@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>辅导 | CANHE ART</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 辅导页面特定样式 */
+        .tutorial-container {
+            padding: 150px 50px 100px;
+            background-color: #000000;
+        }
+        
+        .tutorial-wrapper {
+            display: flex;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .tutorial-sidebar {
+            flex: 0 0 300px;
+            position: sticky;
+            top: 150px;
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .tutorial-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tutorial-nav {
+            border-left: 1px solid #333;
+            padding-left: 30px;
+        }
+        
+        .tutorial-nav-item {
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-nav-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-nav-item h3::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-nav-item:hover h3::before,
+        .tutorial-nav-item.active h3::before {
+            background-color: #ffffff;
+        }
+        
+        .tutorial-nav-item.active h3 {
+            opacity: 1;
+        }
+        
+        .tutorial-content {
+            flex: 1;
+        }
+        
+        .tutorial-section {
+            display: none;
+        }
+        
+        .tutorial-section.active {
+            display: block;
+        }
+        
+        .section-title {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 1px;
+            background-color: #ffffff;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .course-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .course-intro {
+            margin-bottom: 40px;
+        }
+        
+        .course-intro h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .course-intro p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .course-highlight {
+            font-size: 18px;
+            margin: 20px 0;
+            padding: 20px;
+            border-left: 3px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .module-container {
+            margin: 40px 0;
+        }
+        
+        .module {
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .module:hover {
+            border-color: #ffffff;
+        }
+        
+        .module h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .module h4 i {
+            margin-right: 15px;
+            font-size: 24px;
+            opacity: 0.7;
+        }
+        
+        .module p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .course-features {
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .feature-item {
+            padding: 15px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            flex: 0 0 40px;
+            font-size: 24px;
+            opacity: 0.7;
+        }
+        
+        .feature-content h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-content p {
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+        
+        .course-target {
+            margin: 40px 0;
+        }
+        
+        .course-target h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .course-target ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .course-target li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.7;
+        }
+        
+        .course-target li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #ffffff;
+            font-size: 18px;
+        }
+        
+        .course-conclusion {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: left;
+            font-size: 18px;
+            line-height: 1.8;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+        
+        @media (max-width: 992px) {
+            .tutorial-wrapper {
+                flex-direction: column;
+            }
+            
+            .tutorial-sidebar {
+                position: relative;
+                top: 0;
+                height: auto;
+                margin-bottom: 40px;
+            }
+            
+            .tutorial-nav {
+                border-left: none;
+                padding-left: 0;
+                display: flex;
+                gap: 40px;
+                justify-content: center;
+            }
+            
+            .tutorial-nav-item h3 {
+                font-size: 18px;
+            }
+            
+            .tutorial-nav-item h3::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-container {
+                padding: 120px 30px 80px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .course-intro h3 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">仁善慈悲帝</div>
+        <div class="menu-toggle" id="menuToggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="works.html">作品</a></li>
+            <li><a href="exercise.html">练习</a></li>
+            <li><a href="about-contact.html">关于</a></li>
+            <li><a href="journal.html">日志</a></li>
+            <li><a href="tutorial.html" class="active">辅导</a></li>
+        </ul>
+    </nav>
+
+    <!-- 辅导页面内容 -->
+    <section class="tutorial-container">
+        <div class="tutorial-wrapper">
+            <!-- 侧边导航 -->
+            <div class="tutorial-sidebar">
+                <div class="tutorial-nav">
+                    <div class="tutorial-nav-item active" data-target="article-tutorial">
+                        <h3>文章辅导</h3>
+                    </div>
+                    <div class="tutorial-nav-item" data-target="work-tutorial">
+                        <h3>作品辅导</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 主要内容 -->
+            <div class="tutorial-content">
+                <!-- 文章辅导部分 -->
+                <div class="tutorial-section active" id="article-tutorial">
+                    <div class="course-content">
+                        <div class="course-intro">
+                            <h3>《从灵感到论述：艺术类论文写作入门实战工坊》</h3>
+                            <p class="course-highlight">—— 从基础入门，到专业表达，让你的艺术思考更有力量</p>
+                            
+                            <p>当我们谈论艺术时，我们谈论的远不止视觉呈现——那只是冰山一角。在创作背后，是一整套观察、分析、阐释和论证的思维系统。而论文，正是这一系统最凝练的表达。</p>
+                            
+                            <p>作为创作者，你是否意识到：</p>
+                            <ul class="course-target">
+                                <li>能够用文字精确表述创作逻辑的艺术家，才能真正掌握自己的创作？</li>
+                                <li>那些被称为"经典"的作品，往往都有一套自洽且深刻的理论支撑？</li>
+                                <li>在学术场域中，写作能力已经成为检验创作者思考深度的重要标准？</li>
+                                <li>无论是海外留学申请（RP/PS）还是国内考研，论述能力都可能成为你脱颖而出的关键？</li>
+                            </ul>
+                            
+                            <p>这门入门实战工坊将从基础开始，循序渐进地教你如何建立<strong>艺术家的学术思维</strong>——一种能够将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。</p>
+                            
+                            <p><strong>特别说明：</strong>为确保教学质量，本工坊采用限量招生模式，每期仅招收10名学员。一对一指导和论文批注需要投入大量精力，我们希望为每位参与者提供最优质的学习体验。</p>
+                        </div>
+                        
+                        <div class="module-container">
+                            <h4 style="font-size: 24px; margin-bottom: 30px; text-align: center;">知识模块：从观察到论述的完整训练</h4>
+                            
+                            <div class="module">
+                                <h4><i class="fas fa-brain"></i> 模块一：问题意识的培养与学术资源的获取</h4>
+                                <p>我们将打破"选题难"的迷思，教你如何从个人创作实践、艺术史缝隙和当代文化现象中提炼出具有学术价值的研究问题。同时，我们会系统讲解如何高效利用学术数据库（从JSTOR到SAGE，从知网到万方），并通过Zotero等工具构建属于你的知识管理系统。对于准备国内考研的学生，我们会特别关注如何将专业实践与理论研究结合，打造具有个人特色的研究计划（RP）。</p>
+                            </div>
+                            
+                            <div class="module">
+                                <h4><i class="fas fa-project-diagram"></i> 模块二：论述的框架——结构与逻辑的构建</h4>
+                                <p>我们不提供"万能公式"，但会教你理解学术论述的底层逻辑。通过分析优秀艺术史论文、艺术家研究报告和高质量的学术文章，你将学会如何构建一个自洽的论证体系。我们将重点讲解如何撰写具有说服力的文献综述，如何确立自己的理论立场，以及如何将案例分析与理论框架有机结合。</p>
+                                <p><strong>案例分析环节：</strong>我们将分别针对纯艺类（绘画、雕塑、装置艺术等）和设计类（平面设计、产品设计、建筑设计等）文章进行专题讲解，具体主题将在开课前由学员投票决定，确保内容更贴近大家的实际需求。</p>
+                            </div>
+                            
+                            <div class="module">
+                                <h4><i class="fas fa-robot"></i> 模块三：技术时代的学术生产——AI与写作的新关系</h4>
+                                <p>在这个技术变革的时代，拒绝AI就如同拒绝印刷术。我们将教你如何将AI工具（如ChatGPT、Claude）转化为你的"学术助手"——从文献梳理到观点提炼，从语言润色到结构优化。更重要的是，我们会探讨在AI时代，什么才是真正不可替代的"学术创造力"，以及如何在技术辅助下保持自己的思考独立性。</p>
+                            </div>
+                            
+                            <div class="module">
+                                <h4><i class="fas fa-check-circle"></i> 模块四：从文本到呈现——格式、规范与发表策略</h4>
+                                <p>学术写作不仅是思想的表达，也是一套需要掌握的规范体系。我们将详细讲解艺术领域常用的 citation styles（MLA、Chicago、APA及国内学术规范），教你如何进行符合学术标准的图文排版。对于准备申请的同学，我们会特别关注如何根据不同院校和专业的要求，调整个人陈述（PS）的写作策略，突出个人优势。</p>
+                                <p><strong>发表与投递指导：</strong>在课程结束后，我们将根据你的研究方向和写作内容，推荐适合投递的国内外艺术期刊、学术会议或展览平台，帮助你的学术成果获得更广泛的认可。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="course-features">
+                            <h4 style="font-size: 24px; margin-bottom: 30px; text-align: center;">方法论与实践：我们的教学理念</h4>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>两次一对一交流：从概念到呈现的全程指导</h4>
+                                    <p>我们相信，真正的学习发生在具体的实践中。工作坊将包含两次关键的一对一交流环节：<br>
+                                    <strong>第一次（概念打磨）：</strong> 针对你的研究主题或创作计划，帮助你厘清核心问题，确立理论框架，无论是RP还是毕业论文选题，都能获得针对性指导。<br>
+                                    <strong>第二次（文本诊疗）：</strong> 在你完成初稿后，我们将从学术规范、论证逻辑和表达清晰度三个维度进行专业点评，提出具体的修改建议。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>艺术家的学术写作：视觉与文字的对话</h4>
+                                    <p>我们的课程拒绝将学术写作简化为机械的格式训练。我们关注的是如何在文字中保留艺术家的敏锐感知，如何将视觉思考转化为文字论述，如何在学术规范与个人表达之间找到平衡。通过分析艺术家的论文、策展文本和创作自述，你将学会构建属于创作者的独特学术声音。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-content">
+                                    <h4>全球视野与本土实践：兼顾国内外学术需求</h4>
+                                    <p>无论你是准备申请海外院校还是国内考研，我们的工作坊都能提供针对性指导。对于海外申请，我们将详细讲解Research Proposal和Personal Statement的写作策略；对于国内考研，我们会重点关注如何符合国内学术规范，如何撰写高质量的研究计划，帮助你在竞争中脱颖而出。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="course-target">
+                            <h4>谁适合这门工作坊？</h4>
+                            <ul>
+                                <li>正在准备本科/硕士毕业论文，希望提升论述深度的<strong>艺术、设计、新媒体等相关专业学生</strong>。</li>
+                                <li>计划申请国内外研究生，需要撰写高质量<strong>研究计划 (RP)</strong> 和<strong>个人陈述 (PS)</strong> 的申请者。</li>
+                                <li>希望为自己的创作实践建立理论支撑，或需要撰写策展文本、展览前言的<strong>青年艺术家、设计师、策展人</strong>。</li>
+                                <li>任何对视觉文化研究有兴趣，希望掌握学术写作方法的<strong>文化创意领域从业者</strong>。</li>
+                                <li><strong>特别说明：</strong>本工坊限量招生，每期仅招收10名学员，先到先得，确保每位参与者都能获得充分的指导和反馈。</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="course-conclusion">
+                            <p><strong>在今天的艺术世界中，创作与论述已经成为不可分割的整体。能够同时掌握这两种语言的创作者，才能在这个复杂的世界中发出自己的声音。</strong></p>
+                            <p><strong>这门工作坊不是教你如何成为一个"学者"，而是教你如何成为一个"会思考的创作者"——一个既能用作品表达，也能用文字阐释的完整的艺术家。</strong></p>
+                            <p><strong>完成本工作坊后，你不仅能掌握学术写作的核心技能，还将获得专业的发表指导，让你的研究成果走向更广阔的舞台。名额有限，期待与你一起开启这段思考与表达的旅程！</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 作品辅导部分（暂未实现） -->
+                <div class="tutorial-section" id="work-tutorial">
+                    <div class="course-content">
+                        <div class="course-intro">
+                            <h3>作品辅导</h3>
+                            <p>作品辅导部分正在开发中，敬请期待！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 辅导页面切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.tutorial-nav-item');
+            const sections = document.querySelectorAll('.tutorial-section');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有活动状态
+                    navItems.forEach(i => i.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // 添加当前活动状态
+                    this.classList.add('active');
+                    const targetId = this.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

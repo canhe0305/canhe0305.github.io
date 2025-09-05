@@ -1,35 +1,84 @@
 // 导航菜单交互
 const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-const navItems = document.querySelectorAll('.nav-links a');
+let navLinks = null;
+let navItems = null;
 
-// 移动端菜单切换
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-});
-
-// 点击导航链接关闭菜单
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
+// 获取导航元素并添加事件监听
+function initNavigation() {
+    navLinks = document.getElementById('navLinks');
+    navItems = document.querySelectorAll('.nav-links a');
+    
+    if (!navLinks || !navItems) return;
+    
+    // 移动端菜单切换
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+    
+    // 点击导航链接关闭菜单
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (navLinks && menuToggle) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
     });
-});
+}
+
+// 设置当前活动的导航链接
+function setActiveNavLink() {
+    if (!navItems) return;
+    
+    const currentUrl = window.location.pathname;
+    const currentPage = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+    
+    navItems.forEach(item => {
+        const linkUrl = item.getAttribute('href');
+        const linkPage = linkUrl.substring(linkUrl.lastIndexOf('/') + 1);
+        
+        // 如果是首页，特殊处理
+        if ((currentPage === '' || currentPage === 'index.html') && linkPage === 'index.html') {
+            item.classList.add('active');
+        } else if (currentPage === linkPage) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}
+
+// 初始化导航
+initNavigation();
+setActiveNavLink();
 
 // 滚动时导航栏样式变化
-window.addEventListener('scroll', () => {
+function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.padding = '20px 50px';
-        navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-        navbar.style.boxShadow = '0 2px 10px rgba(255, 255, 255, 0.1)';
-    } else {
-        navbar.style.padding = '30px 50px';
-        navbar.style.backgroundColor = 'transparent';
-        navbar.style.boxShadow = 'none';
+    if (!navbar) return;
+    
+    function handleScroll() {
+        if (window.scrollY > 50) {
+            navbar.style.padding = '20px 50px';
+            navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            navbar.style.boxShadow = '0 2px 10px rgba(255, 255, 255, 0.1)';
+        } else {
+            navbar.style.padding = '30px 50px';
+            navbar.style.backgroundColor = 'transparent';
+            navbar.style.boxShadow = 'none';
+        }
     }
-});
+    
+    window.addEventListener('scroll', handleScroll);
+    // 初始调用一次以设置正确的初始状态
+    handleScroll();
+}
+
+// 初始化滚动导航
+initNavbarScroll();
 
 // 平滑滚动（只对单页内锚点链接生效）
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
