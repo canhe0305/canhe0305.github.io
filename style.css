@@ -178,8 +178,12 @@ body {
     display: block;
     aspect-ratio: 3/4; /* 固定宽高比为3:4 */
 }
+
+.work-image {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 .work-image img {
@@ -225,6 +229,7 @@ body {
 
 .view-all-works {
     display: inline-block;
+    margin-top: 30px;
     padding: 12px 30px;
     border: 1px solid #ffffff;
     color: #ffffff;
@@ -385,13 +390,9 @@ button {
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     letter-spacing: -1px;
-}
-
-.logo.smaller {
-    font-size: 16px;
 }
 
 .nav-links {
@@ -465,11 +466,30 @@ button {
     animation: bounce 2s infinite;
 }
 
-.scroll-indicator span {
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+/* 线稿方块样式 */
+.rotating-square {
+    width: 24px;
+    height: 24px;
+    border: 1px solid white;
+    position: relative;
+    margin-bottom: 20px;
+    animation: rotate 8s linear infinite;
+}
+
+/* 向下箭头样式 */
+.bouncing-arrow {
+    color: white;
+    font-size: 14px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes bounce {
@@ -477,12 +497,14 @@ button {
         transform: translateY(0);
     }
     40% {
-        transform: translateY(-10px);
-    }
-    60% {
         transform: translateY(-5px);
     }
+    60% {
+        transform: translateY(-2px);
+    }
 }
+
+
 
 /* 作品展示区域样式 */
 
@@ -691,6 +713,22 @@ button {
     line-height: 1.8;
 }
 
+.language-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.chinese-content {
+    flex: 1;
+    order: 1;
+}
+
+.english-content {
+    flex: 1;
+    order: 2;
+}
+
 .about-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -866,7 +904,7 @@ button {
 
 /* 页脚样式 */
 .footer {
-    padding: 80px 50px 40px;
+    padding: 80px 50px 10px;
     background-color: #000;
     color: #fff;
 }
@@ -1009,4 +1047,4 @@ button {
     .about-stats {
         grid-template-columns: 1fr;
     }
-}`}}}
+}

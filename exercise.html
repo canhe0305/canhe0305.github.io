@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANHE-EXERCISE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 练习页面特定样式 */
+        .exercise-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .exercise-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 40px;
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">仁善慈悲帝</div>
+        <div class="menu-toggle" id="menuToggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="works.html">作品</a></li>
+            <li><a href="exercise.html" class="active">练习</a></li>
+            <li><a href="about-contact.html">关于</a></li>
+            <li><a href="journal.html">日志</a></li>
+        </ul>
+    </nav>
+
+    <!-- 练习展示区域 -->
+    <section id="exercise" class="exercise">
+        <div class="exercise-container">
+            <div class="exercise-items">
+                
+                <div class="work-item fullscreen-item">
+                    <div class="work-image">
+                        <img src="images/practice/draft1.jpg" alt="草图练习1">
+                        <div class="work-overlay">
+                            <h3>建筑草图 #1</h3>
+                            <p>铅笔素描练习</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item fullscreen-item">
+                    <div class="work-image">
+                        <img src="images/practice/draft2.jpg" alt="渲染练习1">
+                        <div class="work-overlay">
+                            <h3>室内渲染 #1</h3>
+                            <p>3D渲染练习</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item fullscreen-item">
+                    <div class="work-image">
+                        <img src="images/practice/draft3.jpg" alt="草图练习2">
+                        <div class="work-overlay">
+                            <h3>产品概念草图</h3>
+                            <p>马克笔表现练习</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item fullscreen-item">
+                    <div class="work-image">
+                        <img src="images/practice/draft4.jpg" alt="渲染练习2">
+                        <div class="work-overlay">
+                            <h3>场景渲染 #2</h3>
+                            <p>环境光效练习</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item fullscreen-item">
+                    <div class="work-image">
+                        <img src="images/practice/draft1.jpg" alt="草图练习3">
+                        <div class="work-overlay">
+                            <h3>城市速写</h3>
+                            <p>钢笔淡彩练习</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 仁善慈悲帝保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
