@@ -519,6 +519,25 @@
             max-height: none;
         }
         
+        /* 会议名称高亮样式 */
+        .highlight-conference {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        /* 问题高亮样式 */
+        .highlight-question {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 8px 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
         /* 参考文献样式 */
         .reference-item {
             font-size: 0.9rem;
@@ -912,16 +931,19 @@
                             <br>
                             <p><strong>作为创作者，你是否有感觉到：</strong></p>
                             <br>
-                            <p>• 一些能够用文字精确表述创作逻辑的创作者，能更好地掌握自己的创作？</p>
-                            <p>• 那些被称为"经典"的作品，似乎都有一套自洽且深刻的理论支撑？</p>
-                            <p>• 在学术场域中，写作能力已经成为检验创作者思考深度的重要标准？</p>
-                            <p>• 无论是海外留学申请还是国内考研，你的写作与论述能力都可能成为脱颖而出的关键？</p>
+                            <p class="highlight-question">1. 一些能够用文字精确表述创作逻辑的创作者，能更好地掌握自己的创作？</p>
+                            <p class="highlight-question">2. 那些被称为"经典"的作品，似乎都有一套自洽且深刻的理论支撑？</p>
+                            <p class="highlight-question">3. 在学术场域中，写作能力已经成为检验创作者思考深度的重要标准？</p>
+                            <p class="highlight-question">4. 无论是海外或国内考研，写作与论述能力都可能成为你脱颖而出的关键？</p>
                             <br>
                         </div>
                         <div class="paragraphs">
                             <div class="paragraph">
                                 <p><strong>课程目标</strong></p>
-                                <p>本工坊将从基础开始，循序渐进地辅助参与者如何建立创作者的学术思维——一种能够将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。帮助刚毕业或在读的艺术实践者梳理自己的创作脉络，提升研究与写作能力。尽管有的参与者会是为了完成研究计划参与我们的工作坊，但我们争取每一个同学的写作结果都能在结束后投递一个与艺术设计相关的会议，并争取能够被会议录用。</p>
+                                <p>本工坊将从基础开始，循序渐进地辅助参与者建立学术思维——将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。</p>
+                                <p>帮助<span class="highlight-conference">刚毕业</span>或<span class="highlight-conference">在读的实践者们</span>梳理自己的创作，提升研究与写作能力。</p>
+                                <p>尽管有的参与者会是为了完成研究计划（RP）参与我们的工作坊，但每一个同学的写作结果都能在结束后投递一个与艺术设计相关的会议（如<span class="highlight-conference">Cumulus</span>、<span class="highlight-conference">DRS2026</span>），并被录用是我们的目标。</p>
+                                <br>
                                 <p><strong>课程时长：</strong>总计10小时（8小时集体课程 + 2小时一对一辅导）</p>
 
                             </div>
@@ -945,16 +967,16 @@
                                 <div class="module">
                                     <div class="module-content">
                                         <h3 class="module-title">模块一：学术写作通识课</h3>
-                                        <p class="module-description">详细介绍研究计划（Research Proposal）、个人陈述（Personal Statement）、期刊论文、会议论文以及博士论文的区别和特点。打破"选题困难"的迷思，讨论如何从个人的过往创作实践、历史缝隙与当代文化现象中提炼出有价值的研究问题。掌握学术资源（JSTOR, SAGE, LEONARDO-MIT PRESS, ARTLIBRARIES.NET, ARTSTOR, GOOGLE SCHOLAR）的高效使用方法，建立个人知识管理系统。特别针对国内考研方向，教你如何将专业实践与理论研究相结合，写出个性化的研究计划书（RP）。</p>
+                                        <p class="module-description">详细介绍<span class="highlight-conference">研究计划（Research Proposal）</span>、<span class="highlight-conference">个人陈述（Personal Statement）</span>、<span class="highlight-conference">期刊论文</span>、<span class="highlight-conference">会议论文</span>以及<span class="highlight-conference">博士论文</span>的区别和特点。打破"选题困难"的迷思，讨论如何从<span class="highlight-conference">个人过往创作实践</span>、历史缝隙与当代文化现象中提炼出有价值的研究问题。掌握学术资源（JSTOR, SAGE, LEONARDO-MIT PRESS, ARTLIBRARIES.NET, ARTSTOR, GOOGLE SCHOLAR）的高效使用方法，建立个人知识管理系统。特别针对国内考研方向，教你如何将专业实践与理论研究相结合，写出个性化的研究计划书（RP）。</p>
                                     </div>
                                 </div>
 
                                 <div class="module">
                                     <div class="module-content">
                                         <h3 class="module-title">模块二：论述的框架——结构与逻辑的构建</h3>
-                                        <p class="module-description">不提供"万能公式"，而是教你学术论述的底层逻辑。通过分析优秀的艺术史论文、创作者研究报告、高质量学术文章，学会构建自主的论证体系。掌握文献综述的写作方法，确立自己的理论立场，将案例分析与理论框架有机结合。</p>
+                                        <p class="module-description">不提供"万能公式"，而是介绍<span class="highlight-conference">艺术研究</span>的底层逻辑。通过分析优秀的艺术论文、创作者研究报告、高质量学术文章，学会构建自主的论证体系。掌握文献综述的写作方法，确立自己的理论立场，将案例分析与理论框架有机结合。</p>
                                         <div class="module-subsection">
-                                            <strong>案例分析环节：</strong>针对纯艺类（绘画、雕塑、装置等）与设计类（平面、产品、建筑等）分别开设专题讲座，具体主题由学员课前投票决定，确保内容贴合实际需求。
+                                            <strong>案例分析环节：</strong>针对<span class="highlight-conference">纯艺类</span>、<span class="highlight-conference">设计类</span>分别开设专项讲解，具体主题由学员课前投票决定，确保内容贴合实际需求。
                                         </div>
                                     </div>
                                 </div>
@@ -962,14 +984,14 @@
                                 <div class="module">
                                     <div class="module-content">
                                         <h3 class="module-title">模块三：技术时代的学术生产——AI与写作的新关系</h3>
-                                        <p class="module-description">在这个技术变革的时代，拒绝AI就像拒绝印刷术一样不现实。教你如何将AI工具（如ChatGPT、Claude）转化为"学术助手"——从文献梳理、观点提炼到语言润色、结构优化。更重要的是，探索在AI时代，什么才是真正不可替代的"学术创造力"，如何在技术辅助下保持独立思考。</p>
+                                        <p class="module-description">主持人作为一个研究技术的创作者，拒绝AI就是在骗人。所以教你如何将AI工具（如ChatGPT、Qwen）转化为"学术助手"——从文献梳理、观点提炼到语言润色、结构优化。更重要的是，探索在AI时代，什么才是真正不可替代的"创造力"，<span class="highlight-conference">如何在技术辅助下保持独立思考</span>。</p>
                                     </div>
                                 </div>
 
                                 <div class="module">
                                     <div class="module-content">
                                         <h3 class="module-title">模块四：从文本到呈现——规范与发表策略</h3>
-                                        <p class="module-description">掌握学术写作的规范要求，包括引用格式（MLA, Chicago, APA, 国内学术规范）、图文排版技巧，以及学术成果的投稿与传播策略。学会如何将研究成果有效传播到期刊、学术会议、展览等不同平台，提升学术影响力。</p>
+                                        <p class="module-description">掌握学术写作的规范要求，包括引用格式（MLA, Chicago, APA, 国内学术规范）、图文排版技巧，以及学术成果的投稿与传播策略。<span class="highlight-conference">第四周包含实操讲解，例如安装软件，还有查找会议的渠道</span>。主要是一些<span class="highlight-conference">辅助性工具的教学</span>，学会如何将研究成果有效传播到期刊、学术会议、展览等不同平台，提升学术影响力。</p>
                                     </div>
                                 </div>
                             </div>
@@ -1036,7 +1058,7 @@
                                         <div class="module-content">
                                             <div class="module-subsection">
                                                 <strong>第一次（概念打磨，1小时）</strong><br>
-                                                针对你的研究主题或创作计划，帮助你厘清核心问题，确立理论框架，无论是RP还是毕业论文选题，都能获得针对性指导。
+                                                针对个人的研究主题或创作计划，帮助你厘清核心问题，确立理论框架，无论是RP还是毕业论文选题，都能获得针对性指导。
                                             </div>
                                             
                                             <div class="module-subsection">
@@ -1066,12 +1088,12 @@
                         <div class="paragraphs">
                             <div class="paragraph">
                                 <p><strong>谁适合这门工作坊？</strong></p>
-                                <p>• 正在准备毕业论文，以实践为主的艺术设计类的学生</p>
+                                <p>• 正在准备初审论文，毕业论文，以实践为主的艺术设计类在读生</p>
                                 <p>• 正在申请国际以及部分国内硕士，对个人陈述以及研究计划感到棘手的申请人</p>
                                 <p>• 需要撰写策展文本、展览前言的青年创作者、设计师、策展人</p>
                                 <p>• 对视觉文化研究有兴趣，希望掌握学术写作方法的文化创意领域从业者</p>
                                 <br>
-                                <p><strong>特别说明：</strong>为保持个人名声，本工坊采用限量招生，每期仅招收10名学员。一对一指导和作业批注需要投入大量精力，我希望为每位参与者提供个人程度上最优质的交流体验。</p>
+                                <p><strong>特别说明：</strong>为保障个人名声，本工坊采用限量招生，每期仅招收10名学员。一对一指导和作业批注需要投入大量精力，我们希望为每位参与者提供个人程度上最优质的交流体验。</p>
                             </div>
 
                             <div class="paragraph">
@@ -1092,19 +1114,19 @@
                             </div>
 
                             <div class="paragraph">
-                                <p><strong style="color: #ff0000;">免责声明与补充说明</strong></p>
+                                <p><strong><span class="highlight-conference">免责声明与补充说明</span></strong></p>
                                 
-                                <p><strong style="color: #ff0000;">课程定位：</strong>本工坊并非策展学或艺术批评理论的专业课程，而是面向刚毕业及在读的艺术实践者，帮助大家梳理个人创作脉络、提升写作清晰度，并获取更优质的阅读与研究资源。</p>
+                                <p><strong><span class="highlight-conference">课程定位：</span></strong><span class="highlight-conference">本工坊并非策展学或艺术批评理论的专业课程，而是面向刚毕业及在读的艺术实践者，帮助大家梳理个人创作脉络、提升写作清晰度，并获取更优质的阅读与研究资源。</span></p>
                                 
-                                <p><strong style="color: #ff0000;">非学术认证课程：</strong>本工坊不等同于正规高校的学术写作训练，不提供完整的学科方法论体系。</p>
+                                <p><strong><span class="highlight-conference">非学术认证课程：</span></strong><span class="highlight-conference">本工坊不等同于正规高校的学术写作训练，不提供完整的学科方法论体系。</span></p>
                                 
-                                <p><strong style="color: #ff0000;">学习成果差异：</strong>每位学员的收获取决于其个人投入、研究兴趣与写作实践，本工坊无法保证产出符合特定院校或期刊的全部标准。</p>
+                                <p><strong><span class="highlight-conference">学习成果差异：</span></strong><span class="highlight-conference">每位学员的收获取决于其个人投入、研究兴趣与写作实践，本工坊无法保证产出符合特定院校或期刊的全部标准。</span></p>
                                 
-                                <p><strong style="color: #ff0000;">AI 使用说明：</strong>课程中涉及的 AI 工具（如 ChatGPT、Claude、Qwen、Gemini）仅为辅助方法，学员需对最终成果的逻辑性与学术责任独立负责。ChatGPT、Claude、Gemini为IP在国外的参与者使用，并无教唆国内参与者使用的意图。</p>
+                                <p><strong><span class="highlight-conference">AI 使用说明：</span></strong><span class="highlight-conference">课程中涉及的 AI 工具（如 ChatGPT、Claude、Qwen、Gemini）仅为辅助方法，学员需对最终成果的逻辑性与学术责任独立负责。ChatGPT、Claude、Gemini为IP在国外的参与者使用，并无教唆国内参与者使用的意图。</span></p>
                                 
-                                <p><strong style="color: #ff0000;">非代写声明：</strong>我们不提供任何形式的论文、申请材料代写或代投。本工坊提供的是思路梳理、资源引导与文本修改建议。</p>
+                                <p><strong><span class="highlight-conference">非代写声明：</span></strong><span class="highlight-conference">我们不提供任何形式的论文、申请材料代写或代投。本工坊提供的是思路梳理、资源引导与文本修改建议。</span></p>
                                 
-                                <p><strong style="color: #ff0000;">版权与隐私：</strong>学员提交的文本与创作内容归学员本人所有，未经许可不会对外公开或使用。</p>
+                                <p><strong><span class="highlight-conference">版权与隐私：</span></strong><span class="highlight-conference">学员提交的文本与创作内容归学员本人所有，未经许可不会对外公开或使用。</span></p>
                             </div>
 
                         </div>
