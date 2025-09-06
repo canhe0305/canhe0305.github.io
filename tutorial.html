@@ -1,471 +1,1289 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>辅导 | CANHE ART</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>艺术实践者的写作入门工作坊</title>
+    <meta name="description" content="艺术实践者的写作入门工作坊，专注于学术写作和创作思维培养">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* 辅导页面特定样式 */
-        .tutorial-container {
-            padding: 150px 50px 100px;
-            background-color: #000000;
+        :root {
+            --content-top-margin: 75vh; /* 调整这个值来控制正文往下移动的距离：6vh=较小，10vh=较大，12vh=很大 */
         }
         
-        .tutorial-wrapper {
-            display: flex;
-            gap: 60px;
-            max-width: 1400px;
-            margin: 0 auto;
+        body, * {
+            margin: 0;
+            box-sizing: border-box;
         }
         
-        .tutorial-sidebar {
-            flex: 0 0 300px;
-            position: sticky;
-            top: 150px;
-            height: calc(100vh - 200px);
-            overflow-y: auto;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        h1, h2, h3, h4, h5 {
+            font-weight: normal;
         }
         
-        .tutorial-sidebar::-webkit-scrollbar {
+        a {
+            text-decoration: none;
+        }
+        
+        /* 隐藏所有浏览器的滚动条 */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        
+        html {
+            overflow: -moz-scrollbars-none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            font-weight: normal;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            background: white;
+            color: #333;
+            letter-spacing: 0.02em;
+        }
+        
+        h2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 4rem;
+            line-height: 3.6rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        
+        h2.names {
+            font-size: 6rem;
+            line-height: 5.8rem;
+            word-break: break-word;
+        }
+        
+        h3 {
+            font-size: 2.2rem;
+            line-height: 1em;
+        }
+        
+        /* 顶部导航栏 */
+        header#topbar {
             display: none;
         }
         
-        .tutorial-nav {
-            border-left: 1px solid #333;
-            padding-left: 30px;
-        }
-        
-        .tutorial-nav-item {
-            margin-bottom: 30px;
+        #topbar #hamburger {
+            display: inline-block;
+            vertical-align: middle;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
         
-        .tutorial-nav-item h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            position: relative;
-            transition: all 0.3s ease;
+        #topbar #hamburger .hamburgerElement {
+            width: 1.5vw;
+            height: 0.1vw;
+            background-color: #ff5541;
+            margin-bottom: 0.3vw;
         }
         
-        .tutorial-nav-item h3::before {
+        #topbar:hover {
+            background-color: #fff;
+            box-shadow: 0 10px 20px #ff5541;
+            width: 100vw;
+        }
+        
+        #topbar #hamburger:hover .hamburgerElement {
+            background-color: #000;
+        }
+        
+        #hamburgerContent {
+            width: 0;
+            overflow: hidden;
+            transition: all 0.5s;
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        #topbar:hover #hamburgerContent {
+            width: 50vw;
+        }
+        
+        #hamburgerContent a {
+            padding-left: 1.3vw;
+        }
+        
+        #hamburgerContent a:hover {
+            color: #0b24fb;
+        }
+        
+        #hamburgerContent .wrapper {
+            width: 70vw;
+        }
+        
+        /* 主容器 */
+        main {
+            padding-top: 2.7vw;
+        }
+        
+        .container {
+            padding: 0;
+            height: auto;
+        }
+        
+        /* 左侧导航 */
+        nav.main {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 100;
+            width: 16.666%;
+            padding: 1.3vw;
+            min-height: 100vh;
+            max-height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(90deg, #ff5541 0%, #ff5541 85%, transparent 100%);
+            box-shadow: 7px 0 20px #ff5541;
+            transform: translate(0);
+            color: #fff;
+            transition: transform 0.3s ease;
+            pointer-events: auto;
+            border: none;
+            border-radius: 0;
+        }
+        
+        /* 左侧导航的柏林噪声边缘 */
+        nav.main::before {
             content: '';
             position: absolute;
-            left: -34px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #333;
-            transition: all 0.3s ease;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px, 80px 80px, 60px 60px;
+            animation: noiseEdgeLeft 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
         }
         
-        .tutorial-nav-item:hover h3::before,
-        .tutorial-nav-item.active h3::before {
-            background-color: #ffffff;
+        nav.main::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.2) 49%, rgba(255, 255, 255, 0.2) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.15) 49%, rgba(255, 255, 255, 0.15) 51%, transparent 52%);
+            background-size: 30px 30px, 40px 40px;
+            animation: noiseEdgeLeft2 12s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
         }
         
-        .tutorial-nav-item.active h3 {
-            opacity: 1;
+        nav.main.hidden {
+            transform: translate(-100%);
         }
         
-        .tutorial-content {
-            flex: 1;
+        /* 左侧边缘提示区域 */
+        .nav-trigger-left {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 100vh;
+            z-index: 99;
+            background: transparent;
+            cursor: pointer;
         }
         
-        .tutorial-section {
+        .nav-trigger-left:hover {
+            background: rgba(255, 85, 65, 0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        nav ul.keywords {
+            font-family: 'Arial', sans-serif;
+            text-align: left;
+        }
+        
+        nav ul.keywords .level-0 span,
+        nav ul.keywords .level-1 span,
+        nav ul.keywords .level-2 span {
+            border: 1px solid #fff;
+            padding-left: 2px;
+            padding-right: 2px;
+            text-transform: capitalize;
+        }
+        
+        nav ul.keywords .level-0 span:hover,
+        nav ul.keywords .level-1 span:hover,
+        nav ul.keywords .level-2 span:hover {
+            color: #ff5541;
+            background-color: #fff;
+        }
+        
+        nav ul.keywords li.level-0 {
+            font-size: 0.2rem;
+            line-height: 0.4rem;
+        }
+        
+        nav ul.keywords li.level-1 {
+            margin-left: 1.3vw;
+            font-size: 1.1rem;
+            line-height: 1.5rem;
+        }
+        
+        nav ul.keywords li.level-2 {
+            margin-left: 1.3vw;
+            font-size: 0.9rem;
+            line-height: 1.2rem;
+        }
+        
+        nav ul.keywords li.level-1,
+        nav ul.keywords li.level-2 {
+            height: 0;
+            overflow: hidden;
+        }
+        
+        nav ul.keywords .level-0.showSub .level-1 {
+            height: auto;
+            overflow: hidden;
+        }
+        
+        nav ul.keywords .level-1.showSub .level-2 {
+            height: auto;
+        }
+        
+        nav ul.keywords .activeLevel0 li.level-1,
+        nav ul.keywords .activeLevel0 li.level-2 {
+            height: auto;
+        }
+        
+        /* 右侧导航 */
+        nav.right {
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 100;
+            width: 16.666%;
+            padding: 1.3vw;
+            min-height: 100vh;
+            max-height: 100vh;
+            overflow-y: scroll;
+            background: linear-gradient(270deg, #ff5541 0%, #ff5541 85%, transparent 100%);
+            box-shadow: -7px 0 20px #ff5541;
+            transform: translate(0);
+            color: #fff;
+            transition: transform 0.3s ease;
+            pointer-events: auto;
+            border: none;
+            border-radius: 0;
+        }
+        
+        /* 右侧导航的柏林噪声边缘 */
+        nav.right::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 60% 60%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 60px 60px, 70px 70px, 45px 45px;
+            animation: noiseEdgeRight 14s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        nav.right::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, transparent 48%, rgba(255, 255, 255, 0.2) 49%, rgba(255, 255, 255, 0.2) 51%, transparent 52%),
+                linear-gradient(-135deg, transparent 48%, rgba(255, 255, 255, 0.15) 49%, rgba(255, 255, 255, 0.15) 51%, transparent 52%);
+            background-size: 35px 35px, 50px 50px;
+            animation: noiseEdgeRight2 18s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        nav.right.hidden {
+            transform: translate(100%);
+        }
+        
+        /* 右侧边缘提示区域 */
+        .nav-trigger-right {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 20px;
+            height: 100vh;
+            z-index: 99;
+            background: transparent;
+            cursor: pointer;
+        }
+        
+        .nav-trigger-right:hover {
+            background: rgba(255, 85, 65, 0.1);
+        }
+        
+        /* 隐藏所有浏览器的滚动条 */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        
+        html {
+            overflow: -moz-scrollbars-none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        body {
+            overflow: -moz-scrollbars-none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        /* 柏林噪声风格的动态边缘动画 */
+        @keyframes noiseEdgeLeft {
+            0% {
+                background-position: 0% 0%, 0% 0%, 0% 0%;
+                opacity: 0.1;
+            }
+            25% {
+                background-position: 25% 25%, 15% 35%, 35% 15%;
+                opacity: 0.3;
+            }
+            50% {
+                background-position: 50% 50%, 30% 70%, 70% 30%;
+                opacity: 0.2;
+            }
+            75% {
+                background-position: 75% 25%, 45% 55%, 85% 45%;
+                opacity: 0.4;
+            }
+            100% {
+                background-position: 100% 0%, 60% 40%, 100% 60%;
+                opacity: 0.1;
+            }
+        }
+        
+        @keyframes noiseEdgeLeft2 {
+            0% {
+                background-position: 0% 0%, 0% 0%;
+                opacity: 0.1;
+            }
+            33% {
+                background-position: 33% 33%, 20% 40%;
+                opacity: 0.3;
+            }
+            66% {
+                background-position: 66% 66%, 40% 80%;
+                opacity: 0.2;
+            }
+            100% {
+                background-position: 100% 100%, 60% 100%;
+                opacity: 0.1;
+            }
+        }
+        
+        @keyframes noiseEdgeRight {
+            0% {
+                background-position: 0% 0%, 0% 0%, 0% 0%;
+                opacity: 0.1;
+            }
+            20% {
+                background-position: 20% 20%, 10% 30%, 30% 10%;
+                opacity: 0.3;
+            }
+            40% {
+                background-position: 40% 40%, 20% 60%, 60% 20%;
+                opacity: 0.2;
+            }
+            60% {
+                background-position: 60% 20%, 30% 50%, 80% 40%;
+                opacity: 0.4;
+            }
+            80% {
+                background-position: 80% 60%, 50% 80%, 100% 60%;
+                opacity: 0.2;
+            }
+            100% {
+                background-position: 100% 100%, 70% 100%, 100% 80%;
+                opacity: 0.1;
+            }
+        }
+        
+        @keyframes noiseEdgeRight2 {
+            0% {
+                background-position: 0% 0%, 0% 0%;
+                opacity: 0.1;
+            }
+            25% {
+                background-position: 25% 25%, 15% 35%;
+                opacity: 0.3;
+            }
+            50% {
+                background-position: 50% 50%, 30% 70%;
+                opacity: 0.2;
+            }
+            75% {
+                background-position: 75% 25%, 45% 55%;
+                opacity: 0.3;
+            }
+            100% {
+                background-position: 100% 100%, 60% 100%;
+                opacity: 0.1;
+            }
+        }
+        
+        /* 三栏制布局 */
+        .interview {
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        
+        /* 单栏制内容区域 */
+        .interview-content {
+            display: block;
+            min-height: 100vh;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4vw;
+            margin-top: var(--content-top-margin); /* 使用CSS变量，方便调整 */
+        }
+        
+        .interview-left {
             display: none;
         }
         
-        .tutorial-section.active {
-            display: block;
+        .interview-center {
+            display: none;
         }
         
-        .section-title {
-            margin-bottom: 60px;
+        /* 隐藏所有代码缩略图 */
+        .code-snippet,
+        .code-preview,
+        .code-thumbnail,
+        .syntax-highlight,
+        .code-block,
+        .code-example,
+        pre,
+        code,
+        .code,
+        .snippet,
+        .preview,
+        .thumbnail {
+            display: none !important;
+        }
+        
+        .interview-right {
+            display: block;
+            padding: 0;
+            background: white;
+            overflow-y: visible;
+            max-height: none;
+        }
+        
+        /* 参考文献样式 */
+        .reference-item {
+            font-size: 0.9rem;
+            line-height: 1.3;
+            margin-bottom: 0.8rem;
+            color: #666;
+            text-align: left;
+        }
+        
+        .reference-number {
+            font-weight: bold;
+            color: #ff5541;
+        }
+        
+        .reference-text {
+            display: block;
+            margin-top: 0.2rem;
+        }
+        
+        .interview .bio {
+            margin-bottom: 2.6vw;
+            font-size: 1.3rem;
+            line-height: 1.6rem;
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -webkit-hyphenate-limit-after: 1;
+            -webkit-hyphenate-limit-before: 3;
+            -moz-hyphens: auto;
+        }
+        
+        .interview .bio .bioname {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: 2.7rem;
+            line-height: 2.4rem;
+            margin: 0 0 1.5rem 0;
+            color: #0b24fb;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            letter-spacing: 0.02em;
+        }
+        
+        .interview .bio .biobracket {
+            color: #7f8c8d;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            letter-spacing: 0.03em;
             text-align: center;
         }
         
-        .section-title h2 {
-            font-size: 32px;
+        .interview .whois {
+            font-family: 'Arial', sans-serif;
+            text-transform: none;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #34495e;
             font-weight: normal;
-            letter-spacing: 2px;
-            position: relative;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 0.5rem;
+        }
+        
+        .interview .whoisName {
+            font-family: 'Arial', sans-serif;
             display: inline-block;
         }
         
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 1px;
-            background-color: #ffffff;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+        .paragraph {
+            position: relative;
+            margin: 1.5rem 0;
         }
         
-        .course-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .paragraph p {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -webkit-hyphenate-limit-after: 1;
+            -webkit-hyphenate-limit-before: 3;
+            -moz-hyphens: auto;
+        }
+        
+        
+        .paragraph strong {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #0b24fb;
+            font-size: 1.3rem;
+            letter-spacing: 0.03em;
+            hyphens: none;
+        }
+        
+        .section-number {
+            color: #0b24fb;
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .course-schedule {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        .course-schedule th,
+        .course-schedule td {
+            border: 1px solid #000;
+            padding: 0.5rem;
             text-align: left;
+            vertical-align: top;
         }
         
-        .course-intro {
-            margin-bottom: 40px;
+        .course-schedule th {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #0b24fb;
+            font-size: 1.1rem;
+            letter-spacing: 0.03em;
         }
         
-        .course-intro h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: left;
+        .course-schedule td:nth-child(1) {
+            width: 8%;
+            text-align: center;
+            font-weight: bold;
         }
         
-        .course-intro p {
-            margin-bottom: 15px;
-            line-height: 1.8;
+        .course-schedule td:nth-child(2) {
+            width: 25%;
+            font-weight: bold;
+            color: #0b24fb;
         }
         
-        .course-highlight {
-            font-size: 18px;
-            margin: 20px 0;
-            padding: 20px;
-            border-left: 3px solid #ffffff;
-            background-color: rgba(255, 255, 255, 0.05);
+        .course-schedule td:nth-child(3) {
+            width: 8%;
+            text-align: center;
+        }
+        
+        .course-schedule td:nth-child(4) {
+            width: 35%;
+        }
+        
+        .course-schedule td:nth-child(5) {
+            width: 24%;
+            font-style: italic;
         }
         
         .module-container {
-            margin: 40px 0;
+            margin: 1rem 0;
         }
         
         .module {
-            margin-bottom: 30px;
-            padding: 25px;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 1px solid #000;
         }
         
-        .module:hover {
-            border-color: #ffffff;
+        .module-content {
+            width: 100%;
         }
         
-        .module h4 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
+        .module-title {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #0b24fb;
+            margin: 0 0 0.8rem 0;
+            line-height: 1.5;
+            letter-spacing: 0.03em;
         }
         
-        .module h4 i {
-            margin-right: 15px;
-            font-size: 24px;
-            opacity: 0.7;
-        }
-        
-        .module p {
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-        
-        .course-features {
-            margin: 40px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .feature-item {
-            padding: 15px;
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        
-        .feature-icon {
-            flex: 0 0 40px;
-            font-size: 24px;
-            opacity: 0.7;
-        }
-        
-        .feature-content h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        
-        .feature-content p {
+        .module-description {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
             line-height: 1.7;
-            opacity: 0.8;
+            color: #555;
+            margin: 0 0 0.8rem 0;
+            letter-spacing: 0.02em;
         }
         
-        .course-target {
-            margin: 40px 0;
+        .module-subsection {
+            font-family: 'Arial', sans-serif;
+            padding: 0.8rem 0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #666;
+            letter-spacing: 0.02em;
         }
         
-        .course-target h4 {
-            font-size: 20px;
-            margin-bottom: 15px;
+        .module-subsection strong {
+            color: #2c3e50;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
         }
         
-        .course-target ul {
-            list-style-type: none;
-            padding-left: 0;
+        .paragraph em.term {
+            font-family: 'Courier New', monospace;
+            font-size: inherit;
+            font-style: normal;
+            cursor: pointer;
         }
         
-        .course-target li {
-            margin-bottom: 15px;
-            padding-left: 25px;
-            position: relative;
-            line-height: 1.7;
+        .paragraph em.term:before {
+            content: "<";
+            color: #0b24fb;
+            padding-right: 0.1em;
         }
         
-        .course-target li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #ffffff;
-            font-size: 18px;
+        .paragraph em.term:after {
+            content: ">";
+            color: #0b24fb;
+            padding-left: 0.1em;
         }
         
-        .course-conclusion {
-            margin-top: 40px;
-            padding: 20px;
-            text-align: left;
-            font-size: 18px;
-            line-height: 1.8;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
+        .paragraph aside {
+            color: #ff5541;
+            max-width: 20%;
+            display: inline-block;
+            position: sticky;
+            top: 3.9vw;
         }
         
-        @media (max-width: 992px) {
-            .tutorial-wrapper {
-                flex-direction: column;
+        .paragraph aside .a_id {
+            line-height: 1.2em;
+        }
+        
+        
+        
+        /* 移除旧图标导航样式 */
+        
+        a {
+            color: inherit;
+        }
+        
+        .paragraph ::selection {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #0b24fb;
+        }
+        
+        h2::selection {
+            background: #ff5541;
+            color: #fff;
+        }
+        
+        /* 移动端适配 */
+        @media (orientation: portrait) {
+            body {
+                font-size: 1.1rem;
+                line-height: 1.8;
             }
             
-            .tutorial-sidebar {
-                position: relative;
-                top: 0;
-                height: auto;
-                margin-bottom: 40px;
+            .interview {
+                margin-left: 0;
+                margin-right: 0;
+                padding: 0;
             }
             
-            .tutorial-nav {
-                border-left: none;
-                padding-left: 0;
-                display: flex;
-                gap: 40px;
-                justify-content: center;
+            .interview-content {
+                padding: 2vw;
             }
             
-            .tutorial-nav-item h3 {
-                font-size: 18px;
+            .interview-right {
+                padding: 0;
+                max-height: none;
+                overflow-y: visible;
             }
             
-            .tutorial-nav-item h3::before {
+            .reference-item {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .course-schedule {
+                font-size: 0.9rem;
+                margin: 0.3rem 0;
+            }
+            
+            .course-schedule th,
+            .course-schedule td {
+                padding: 0.3rem;
+            }
+            
+            .module {
+                padding: 0.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            .module-title {
+                font-size: 1.1rem;
+            }
+            
+            .module-description {
+                font-size: 0.9rem;
+            }
+            
+            .paragraph aside .a_cluster {
                 display: none;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .tutorial-container {
-                padding: 120px 30px 80px;
+            
+            h2 {
+                font-size: 3.5rem;
+                line-height: 3.3rem;
             }
             
-            .tutorial-nav {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
+            h2.names {
+                font-size: 3.5rem;
+                line-height: 3.3rem;
             }
             
-            .section-title h2 {
-                font-size: 28px;
+            .interview .bio {
+                font-size: 1.1rem;
+                line-height: 1.3rem;
             }
             
-            .course-intro h3 {
-                font-size: 24px;
+            
+            
+            .interview .whois {
+                line-height: 2rem;
             }
+            
+            .interview .whoisName {
+                display: initial;
+                padding: 0vw;
+                max-width: 100vw;
+            }
+            
+            /* 移动端导航样式由外部CSS文件提供 */
         }
     </style>
 </head>
+
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="logo">仁善慈悲帝</div>
-        <div class="menu-toggle" id="menuToggle">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="works.html">作品</a></li>
-            <li><a href="exercise.html">练习</a></li>
-            <li><a href="about-contact.html">关于</a></li>
-            <li><a href="journal.html">日志</a></li>
-            <li><a href="tutorial.html" class="active">辅导</a></li>
-        </ul>
-    </nav>
 
-    <!-- 辅导页面内容 -->
-    <section class="tutorial-container">
-        <div class="tutorial-wrapper">
-            <!-- 侧边导航 -->
-            <div class="tutorial-sidebar">
-                <div class="tutorial-nav">
-                    <div class="tutorial-nav-item active" data-target="article-tutorial">
-                        <h3>文章辅导</h3>
-                    </div>
-                    <div class="tutorial-nav-item" data-target="work-tutorial">
-                        <h3>作品辅导</h3>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 主要内容 -->
-            <div class="tutorial-content">
-                <!-- 文章辅导部分 -->
-                <div class="tutorial-section active" id="article-tutorial">
-                    <div class="course-content">
-                        <div class="course-intro">
-                            <h3>《从灵感到论述：艺术类论文写作入门实战工坊》</h3>
-                            <p class="course-highlight">—— 从基础入门，到专业表达，让你的艺术思考更有力量</p>
-                            
+    <main>
+        <!-- 导航触发区域 -->
+        <div class="nav-trigger-left"></div>
+        <div class="nav-trigger-right"></div>
+        
+        <div class="container">
+            <!-- 左侧导航 -->
+            <nav class="main">
+                <ul>
+                    <li>
+                        <h2>2025</h2>
+                        <a href="#">艺术实践者的写作入门工作坊</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- 右侧导航 -->
+            <nav class="right">
+                <ul>
+                    <li id="sessions">
+                        <h2>Canhe</h2>
+                        <ul class="keywords">
+                            <li class="level-0"><a href="index.html"><span>Home</span></a></li>
+                            <li class="level-0"><a href="works.html"><span>Works</span></a></li>
+                            <li class="level-0"><a href="exercise.html"><span>Exercise</span></a></li>
+                            <li class="level-0"><a href="about-contact.html"><span>About</span></a></li>
+                            <li class="level-0"><a href="journal.html"><span>Journal</span></a></li>
+                            <li class="level-0"><a href="tutorial.html"><span>Tutorial</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- 访谈内容区域 -->
+            <div class="interview">
+
+                <!-- 三栏制内容区域 -->
+                <div class="interview-content">
+                    <!-- 单栏内容 -->
+                    <div class="interview-right">
+                        <div class="bio">
+                        <p class="bioname">
+                            <span>艺术实践者的写作入门工作坊</span>
+                        </p>
+                            <p class="biobracket">[从基础入门，到专业表达，让你的艺术思考更有力量]</p>
                             <p>当我们谈论艺术时，我们谈论的远不止视觉呈现——那只是冰山一角。在创作背后，是一整套观察、分析、阐释和论证的思维系统。而论文，正是这一系统最凝练的表达。</p>
-                            
-                            <p>作为创作者，你是否意识到：</p>
-                            <ul class="course-target">
-                                <li>能够用文字精确表述创作逻辑的艺术家，才能真正掌握自己的创作？</li>
-                                <li>那些被称为"经典"的作品，往往都有一套自洽且深刻的理论支撑？</li>
-                                <li>在学术场域中，写作能力已经成为检验创作者思考深度的重要标准？</li>
-                                <li>无论是海外留学申请（RP/PS）还是国内考研，论述能力都可能成为你脱颖而出的关键？</li>
-                            </ul>
-                            
-                            <p>这门入门实战工坊将从基础开始，循序渐进地教你如何建立<strong>艺术家的学术思维</strong>——一种能够将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。</p>
-                            
-                            <p><strong>特别说明：</strong>为确保教学质量，本工坊采用限量招生模式，每期仅招收10名学员。一对一指导和论文批注需要投入大量精力，我们希望为每位参与者提供最优质的学习体验。</p>
+                            <br>
+                            <br>
+                            <p><strong>作为创作者，你是否意识到：</strong></p>
+                            <br>
+                            <p>• 能够用文字精确表述创作逻辑的创作者，能更好地掌握自己的创作？</p>
+                            <p>• 那些被称为"经典"的作品，似乎都有一套自洽且深刻的理论支撑？</p>
+                            <p>• 在学术场域中，写作能力已经成为检验创作者思考深度的重要标准？</p>
+                            <p>• 无论是海外留学申请（RP/PS）还是国内考研，论述能力都可能成为你脱颖而出的关键？</p>
+                            <br>
+                            <p>本工坊将从基础开始，循序渐进地教你如何建立创作者的学术思维——一种能够将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。</p>
                         </div>
-                        
-                        <div class="module-container">
-                            <h4 style="font-size: 24px; margin-bottom: 30px; text-align: center;">知识模块：从观察到论述的完整训练</h4>
-                            
-                            <div class="module">
-                                <h4><i class="fas fa-brain"></i> 模块一：问题意识的培养与学术资源的获取</h4>
-                                <p>我们将打破"选题难"的迷思，教你如何从个人创作实践、艺术史缝隙和当代文化现象中提炼出具有学术价值的研究问题。同时，我们会系统讲解如何高效利用学术数据库（从JSTOR到SAGE，从知网到万方），并通过Zotero等工具构建属于你的知识管理系统。对于准备国内考研的学生，我们会特别关注如何将专业实践与理论研究结合，打造具有个人特色的研究计划（RP）。</p>
+
+                        <div class="paragraphs">
+                            <div class="paragraph">
+                                <p><strong>课程目标</strong></p>
+                                <p>本工坊将从基础开始，循序渐进地教你如何建立创作者的学术思维——一种能够将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。帮助刚毕业或在读的艺术实践者梳理自己的创作脉络，提升研究与写作能力，争取每一个同学的写作结果都能在结束后都能达到投递一个相关会议的程度。</p>
+                                <p><strong>课程时长：</strong>总计10小时（8小时集体课程 + 2小时一对一辅导）</p>
+                                <p><strong>一对一辅导：</strong>2小时，分两次进行，每次1小时</p>
+                                <p><strong>报名方式：</strong>添加微信 canhe_art 咨询报名</p>
                             </div>
-                            
-                            <div class="module">
-                                <h4><i class="fas fa-project-diagram"></i> 模块二：论述的框架——结构与逻辑的构建</h4>
-                                <p>我们不提供"万能公式"，但会教你理解学术论述的底层逻辑。通过分析优秀艺术史论文、艺术家研究报告和高质量的学术文章，你将学会如何构建一个自洽的论证体系。我们将重点讲解如何撰写具有说服力的文献综述，如何确立自己的理论立场，以及如何将案例分析与理论框架有机结合。</p>
-                                <p><strong>案例分析环节：</strong>我们将分别针对纯艺类（绘画、雕塑、装置艺术等）和设计类（平面设计、产品设计、建筑设计等）文章进行专题讲解，具体主题将在开课前由学员投票决定，确保内容更贴近大家的实际需求。</p>
+
+                            <div class="paragraph">
+                                <p><strong>课程特色</strong></p>
+                                <p>• 理论与实践结合<br>
+                                • AI辅助写作教学<br>
+                                • 一对一辅导<br>
+                                • 从创作到论文的完整流程</p>
                             </div>
-                            
-                            <div class="module">
-                                <h4><i class="fas fa-robot"></i> 模块三：技术时代的学术生产——AI与写作的新关系</h4>
-                                <p>在这个技术变革的时代，拒绝AI就如同拒绝印刷术。我们将教你如何将AI工具（如ChatGPT、Claude）转化为你的"学术助手"——从文献梳理到观点提炼，从语言润色到结构优化。更重要的是，我们会探讨在AI时代，什么才是真正不可替代的"学术创造力"，以及如何在技术辅助下保持自己的思考独立性。</p>
-                            </div>
-                            
-                            <div class="module">
-                                <h4><i class="fas fa-check-circle"></i> 模块四：从文本到呈现——格式、规范与发表策略</h4>
-                                <p>学术写作不仅是思想的表达，也是一套需要掌握的规范体系。我们将详细讲解艺术领域常用的 citation styles（MLA、Chicago、APA及国内学术规范），教你如何进行符合学术标准的图文排版。对于准备申请的同学，我们会特别关注如何根据不同院校和专业的要求，调整个人陈述（PS）的写作策略，突出个人优势。</p>
-                                <p><strong>发表与投递指导：</strong>在课程结束后，我们将根据你的研究方向和写作内容，推荐适合投递的国内外艺术期刊、学术会议或展览平台，帮助你的学术成果获得更广泛的认可。</p>
-                            </div>
+
                         </div>
-                        
-                        <div class="course-features">
-                            <h4 style="font-size: 24px; margin-bottom: 30px; text-align: center;">方法论与实践：我们的教学理念</h4>
-                            
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h4>两次一对一交流：从概念到呈现的全程指导</h4>
-                                    <p>我们相信，真正的学习发生在具体的实践中。工作坊将包含两次关键的一对一交流环节：<br>
-                                    <strong>第一次（概念打磨）：</strong> 针对你的研究主题或创作计划，帮助你厘清核心问题，确立理论框架，无论是RP还是毕业论文选题，都能获得针对性指导。<br>
-                                    <strong>第二次（文本诊疗）：</strong> 在你完成初稿后，我们将从学术规范、论证逻辑和表达清晰度三个维度进行专业点评，提出具体的修改建议。</p>
-                                </div>
+                        <div class="paragraphs">
+                            <div class="paragraph">
+                                <p><strong>课程详细内容</strong></p>
+                                <p>本工坊分为四个核心模块，循序渐进地培养创作者的学术写作能力：</p>
                             </div>
-                            
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-palette"></i>
+
+                            <div class="module-container">
+                                <div class="module">
+                                    <div class="module-content">
+                                        <h3 class="module-title">模块一：学术写作通识课</h3>
+                                        <p class="module-description">详细介绍RP（Research Proposal）、PS（Personal Statement）、期刊论文、会议论文以及博士论文的区别和特点。打破"选题困难"的迷思，教你从个人创作实践、艺术史缝隙与当代文化现象中提炼出有价值的研究问题。掌握学术数据库（JSTOR, SAGE, CNKI, 万方）的高效使用方法，建立个人知识管理系统（Zotero等工具）。特别针对国内考研方向，教你如何将专业实践与理论研究相结合，写出个性化的研究计划书（RP）。</p>
+                                    </div>
                                 </div>
-                                <div class="feature-content">
-                                    <h4>艺术家的学术写作：视觉与文字的对话</h4>
-                                    <p>我们的课程拒绝将学术写作简化为机械的格式训练。我们关注的是如何在文字中保留艺术家的敏锐感知，如何将视觉思考转化为文字论述，如何在学术规范与个人表达之间找到平衡。通过分析艺术家的论文、策展文本和创作自述，你将学会构建属于创作者的独特学术声音。</p>
+
+                                <div class="module">
+                                    <div class="module-content">
+                                        <h3 class="module-title">模块二：论述的框架——结构与逻辑的构建</h3>
+                                        <p class="module-description">不提供"万能公式"，而是教你学术论述的底层逻辑。通过分析优秀的艺术史论文、创作者研究报告、高质量学术文章，学会构建自主的论证体系。掌握文献综述的写作方法，确立自己的理论立场，将案例分析与理论框架有机结合。</p>
+                                        <div class="module-subsection">
+                                            <strong>案例分析环节：</strong>针对纯艺类（绘画、雕塑、装置等）与设计类（平面、产品、建筑等）分别开设专题讲座，具体主题由学员课前投票决定，确保内容贴合实际需求。
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="feature-item">
-                                <div class="feature-content">
-                                    <h4>全球视野与本土实践：兼顾国内外学术需求</h4>
-                                    <p>无论你是准备申请海外院校还是国内考研，我们的工作坊都能提供针对性指导。对于海外申请，我们将详细讲解Research Proposal和Personal Statement的写作策略；对于国内考研，我们会重点关注如何符合国内学术规范，如何撰写高质量的研究计划，帮助你在竞争中脱颖而出。</p>
+
+                                <div class="module">
+                                    <div class="module-content">
+                                        <h3 class="module-title">模块三：技术时代的学术生产——AI与写作的新关系</h3>
+                                        <p class="module-description">在这个技术变革的时代，拒绝AI就像拒绝印刷术一样不现实。教你如何将AI工具（如ChatGPT、Claude）转化为"学术助手"——从文献梳理、观点提炼到语言润色、结构优化。更重要的是，探索在AI时代，什么才是真正不可替代的"学术创造力"，如何在技术辅助下保持独立思考。</p>
+                                    </div>
+                                </div>
+
+                                <div class="module">
+                                    <div class="module-content">
+                                        <h3 class="module-title">模块四：从文本到呈现——规范与发表策略</h3>
+                                        <p class="module-description">掌握学术写作的规范要求，包括引用格式（MLA, Chicago, APA, 国内学术规范）、图文排版技巧，以及学术成果的投稿与传播策略。学会如何将研究成果有效传播到期刊、学术会议、展览等不同平台，提升学术影响力。</p>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="paragraph">
+                                <p><strong>详细课程安排表</strong></p>
+                                <table class="course-schedule">
+                                    <thead>
+                                        <tr>
+                                            <th>周次</th>
+                                            <th>模块主题</th>
+                                            <th>时长</th>
+                                            <th>主要内容</th>
+                                            <th>特别环节</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>第1周</td>
+                                            <td>模块一：问题意识的培养与学术资源的获取</td>
+                                            <td>2小时</td>
+                                            <td>• 如何从作品/文化现象中提炼研究问题<br>
+                                                • 学术数据库使用（JSTOR, CNKI 等）<br>
+                                                • 知识管理工具（Zotero）</td>
+                                            <td>小练习：为个人作品提出研究问题</td>
+                                        </tr>
+                                        <tr>
+                                            <td>第2周</td>
+                                            <td>模块二：论述的框架——结构与逻辑</td>
+                                            <td>2小时</td>
+                                            <td>• 学术论述逻辑结构<br>
+                                                • 文献综述写作方法<br>
+                                                • 理论立场确立</td>
+                                            <td>案例研讨：纯艺/设计类论文写作</td>
+                                        </tr>
+                                        <tr>
+                                            <td>第3周</td>
+                                            <td>模块三：技术时代的学术生产——AI与写作</td>
+                                            <td>2小时</td>
+                                            <td>• AI辅助写作工作流<br>
+                                                • AI与创造力的边界</td>
+                                            <td>示范：以"异时性设计"为例，现场生成写作框架</td>
+                                        </tr>
+                                        <tr>
+                                            <td>第4周</td>
+                                            <td>模块四：从文本到呈现——规范与发表</td>
+                                            <td>2小时</td>
+                                            <td>• Citation styles（MLA/Chicago/APA/国内规范）<br>
+                                                • 图文排版技巧<br>
+                                                • 期刊/会议/展览投稿策略</td>
+                                            <td>投递建议：结合学员研究方向</td>
+                                        </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        
-                        <div class="course-target">
-                            <h4>谁适合这门工作坊？</h4>
-                            <ul>
-                                <li>正在准备本科/硕士毕业论文，希望提升论述深度的<strong>艺术、设计、新媒体等相关专业学生</strong>。</li>
-                                <li>计划申请国内外研究生，需要撰写高质量<strong>研究计划 (RP)</strong> 和<strong>个人陈述 (PS)</strong> 的申请者。</li>
-                                <li>希望为自己的创作实践建立理论支撑，或需要撰写策展文本、展览前言的<strong>青年艺术家、设计师、策展人</strong>。</li>
-                                <li>任何对视觉文化研究有兴趣，希望掌握学术写作方法的<strong>文化创意领域从业者</strong>。</li>
-                                <li><strong>特别说明：</strong>本工坊限量招生，每期仅招收10名学员，先到先得，确保每位参与者都能获得充分的指导和反馈。</li>
-                            </ul>
+
+                        <div class="paragraphs">
+                            <div class="paragraph">
+                                <p><strong>一对一辅导的环节</strong></p>
+                                <p>我们相信，真正的学习发生在具体的实践中。工作坊将包含两次关键的一对一交流环节：</p>
+                                
+                                <div class="module-container">
+                                    <div class="module">
+                                        <div class="module-content">
+                                            <div class="module-subsection">
+                                                <strong>第一次（概念打磨，1小时）</strong><br>
+                                                针对你的研究主题或创作计划，帮助你厘清核心问题，确立理论框架，无论是RP还是毕业论文选题，都能获得针对性指导。
+                                            </div>
+                                            
+                                            <div class="module-subsection">
+                                                <strong>第二次（文本讨论，1小时）</strong><br>
+                                                在你完成初稿后，我们将从学术规范、论证逻辑和表达清晰度三个维度进行专业点评，提出具体的修改建议。
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="module">
+                                        <div class="module-content">
+                                            <h3 class="module-title">创作者的学术写作：视觉与文字的对话</h3>
+                                            <p class="module-description">我们的课程拒绝将学术写作简化为机械的格式训练。我们关注的是如何在文字中保留创作者的敏锐感知，如何将视觉思考转化为文字论述，如何在学术规范与个人表达之间找到平衡。通过分析创作者的论文、策展文本和创作自述，你将学会构建属于创作者的独特学术声音。</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="module">
+                                        <div class="module-content">
+                                            <h3 class="module-title">全球视野与本土实践：兼顾国内外学术需求</h3>
+                                            <p class="module-description">无论你是准备申请海外院校还是国内考研，我们的工作坊都能提供针对性指导。对于海外申请，我们将详细讲解Research Proposal和Personal Statement的写作策略；对于国内考研，我们会重点关注如何符合国内学术规范，如何撰写高质量的研究计划，帮助你在竞争中脱颖而出。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="course-conclusion">
-                            <p><strong>在今天的艺术世界中，创作与论述已经成为不可分割的整体。能够同时掌握这两种语言的创作者，才能在这个复杂的世界中发出自己的声音。</strong></p>
-                            <p><strong>这门工作坊不是教你如何成为一个"学者"，而是教你如何成为一个"会思考的创作者"——一个既能用作品表达，也能用文字阐释的完整的艺术家。</strong></p>
-                            <p><strong>完成本工作坊后，你不仅能掌握学术写作的核心技能，还将获得专业的发表指导，让你的研究成果走向更广阔的舞台。名额有限，期待与你一起开启这段思考与表达的旅程！</strong></p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 作品辅导部分（暂未实现） -->
-                <div class="tutorial-section" id="work-tutorial">
-                    <div class="course-content">
-                        <div class="course-intro">
-                            <h3>作品辅导</h3>
-                            <p>作品辅导部分正在开发中，敬请期待！</p>
+
+                        <div class="paragraphs">
+                            <div class="paragraph">
+                                <p><strong>谁适合这门工作坊？</strong></p>
+                                <p>• 正在准备毕业论文，以实践为主的艺术设计类的学生</p>
+                                <p>• 正在申请国际以及部分国内硕士，对个人陈述以及研究计划感到棘手的申请人</p>
+                                <p>• 需要撰写策展文本、展览前言的青年创作者、设计师、策展人</p>
+                                <p>• 对视觉文化研究有兴趣，希望掌握学术写作方法的文化创意领域从业者</p>
+                                <br>
+                                <p><strong>特别说明：</strong>为保持个人名声，本工坊采用限量招生，每期仅招收10名学员。一对一指导和作业批注需要投入大量精力，我希望为每位参与者提供个人程度上最优质的交流体验。</p>
+                            </div>
+
+                            <div class="paragraph">
+                                <p><strong>早鸟价格：</strong>￥1200/人（9.14前）</p>
+                                <p><strong>正常价格：</strong>￥1500/人</p>
+                                <p><strong>预计开课：</strong>9.20</p>
+                                <br>
+                                <p><strong>报名咨询</strong></p>
+                                <p>添加微信 mysterych924 咨询报名</p>
+                            </div>
+
+                            <div class="paragraph">
+                                <p><strong>主持人介绍</strong></p>
+                                <p><strong style="color: #333;">CANHE能祂</strong></p>
+                                <p>中央圣马丁艺术与设计学院一等毕业，实践作品获得LVMH 2025MAISON/0 THIS EARTH AWARD 提名。曾在央美、北服担任客座讲师，教授GenAI与文化遗产创作以及技术基础的创作课程。在CSM就读期间，受纯艺部门讲师Clem Crosby委托，辅导华语学生撰写研究计划，并帮助一名中国籍博士候选人获得ARCH奖学金。</p>
+                                <p>能祂以当代首饰与媒体艺术方向的艺术实践背景转向学术写作，深谙实践类学生的写作痛点，不讲八股文，直接上硬通货。</p>
+                                <p>目前即将加入厦门大学双创学院，协助英国UCA教师团队教授媒体艺术课程。</p>
+                            </div>
+
+                            <div class="paragraph">
+                                <p><strong style="color: #ff0000;">免责声明与补充说明</strong></p>
+                                
+                                <p><strong style="color: #ff0000;">课程定位：</strong>本工坊并非策展学或艺术批评理论的专业课程，而是面向刚毕业及在读的艺术实践者，帮助大家梳理个人创作脉络、提升写作清晰度，并获取更优质的阅读与研究资源。</p>
+                                
+                                <p><strong style="color: #ff0000;">非学术认证课程：</strong>本工坊不等同于正规高校的学术写作训练，不提供完整的学科方法论体系。</p>
+                                
+                                <p><strong style="color: #ff0000;">学习成果差异：</strong>每位学员的收获取决于其个人投入、研究兴趣与写作实践，本工坊无法保证产出符合特定院校或期刊的全部标准。</p>
+                                
+                                <p><strong style="color: #ff0000;">AI 使用说明：</strong>课程中涉及的 AI 工具（如 ChatGPT、Claude、Qwen、Gemini）仅为辅助方法，学员需对最终成果的逻辑性与学术责任独立负责。ChatGPT、Claude、Gemini为IP在国外的参与者使用，并无教唆国内参与者使用的意图。</p>
+                                
+                                <p><strong style="color: #ff0000;">非代写声明：</strong>我们不提供任何形式的论文、申请材料代写或代投。本工坊提供的是思路梳理、资源引导与文本修改建议。</p>
+                                
+                                <p><strong style="color: #ff0000;">版权与隐私：</strong>学员提交的文本与创作内容归学员本人所有，未经许可不会对外公开或使用。</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2025 保留所有权利.</p>
         </div>
-    </footer>
+    </main>
 
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // 辅导页面切换功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const navItems = document.querySelectorAll('.tutorial-nav-item');
-            const sections = document.querySelectorAll('.tutorial-section');
+        jQuery(document).ready(function($) {
+            // 检测设备方向
+            if($(window).height() > $(window).width()){
+                var portrait = true;
+            } else {
+                var portrait = false;
+            }
+
+            // 滚动事件处理
+            let hasScrolled = false;
             
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 移除所有活动状态
-                    navItems.forEach(i => i.classList.remove('active'));
-                    sections.forEach(s => s.classList.remove('active'));
-                    
-                    // 添加当前活动状态
-                    this.classList.add('active');
-                    const targetId = this.getAttribute('data-target');
-                    document.getElementById(targetId).classList.add('active');
-                });
+            $(window).scroll(function() {
+                if (!hasScrolled) {
+                    hasScrolled = true;
+                    // 当开始滚动时，隐藏导航栏
+                    $('nav.main').addClass('hidden');
+                    $('nav.right').addClass('hidden');
+                }
             });
+            
+            // 点击触发区域展开导航栏
+            $('.nav-trigger-left').click(function() {
+                if (hasScrolled) {
+                    $('nav.main').removeClass('hidden');
+                }
+            });
+            
+            $('.nav-trigger-right').click(function() {
+                if (hasScrolled) {
+                    $('nav.right').removeClass('hidden');
+                }
+            });
+            
+            // 触发区域悬停展开导航栏
+            $('.nav-trigger-left').hover(
+                function() {
+                    if (hasScrolled) {
+                        $('nav.main').removeClass('hidden');
+                    }
+                },
+                function() {
+                    if (hasScrolled) {
+                        $('nav.main').addClass('hidden');
+                    }
+                }
+            );
+            
+            $('.nav-trigger-right').hover(
+                function() {
+                    if (hasScrolled) {
+                        $('nav.right').removeClass('hidden');
+                    }
+                },
+                function() {
+                    if (hasScrolled) {
+                        $('nav.right').addClass('hidden');
+                    }
+                }
+            );
+            
+            // 点击屏幕边缘展开导航栏
+            $(document).click(function(e) {
+                // 如果导航栏已隐藏且点击在屏幕边缘
+                if (hasScrolled && $('nav.main').hasClass('hidden')) {
+                    // 点击左侧边缘（屏幕左1/6区域）
+                    if (e.pageX < $(window).width() / 6) {
+                        $('nav.main').removeClass('hidden');
+                    }
+                    // 点击右侧边缘（屏幕右1/6区域）
+                    if (e.pageX > $(window).width() * 5 / 6) {
+                        $('nav.right').removeClass('hidden');
+                    }
+                }
+            });
+            
+            // 全局鼠标移动检测，离开导航区域时收缩
+            $(document).mousemove(function(e) {
+                if (hasScrolled) {
+                    const windowWidth = $(window).width();
+                    const navWidth = windowWidth * 0.1666; // 16.666%
+                    
+                    // 检查鼠标是否在导航栏区域内
+                    const inLeftNav = e.pageX < navWidth;
+                    const inRightNav = e.pageX > windowWidth - navWidth;
+                    const inLeftTrigger = e.pageX < 20;
+                    const inRightTrigger = e.pageX > windowWidth - 20;
+                    
+                    // 如果鼠标不在任何导航区域内，收缩导航栏
+                    if (!inLeftNav && !inRightNav && !inLeftTrigger && !inRightTrigger) {
+                        $('nav.main').addClass('hidden');
+                        $('nav.right').addClass('hidden');
+                    }
+                }
+            });
+            
+            // 鼠标悬停展开导航栏
+            $('nav.main').hover(
+                function() {
+                    if (hasScrolled) {
+                        $(this).removeClass('hidden');
+                    }
+                },
+                function() {
+                    if (hasScrolled) {
+                        $(this).addClass('hidden');
+                    }
+                }
+            );
+            
+            $('nav.right').hover(
+                function() {
+                    if (hasScrolled) {
+                        $(this).removeClass('hidden');
+                    }
+                },
+                function() {
+                    if (hasScrolled) {
+                        $(this).addClass('hidden');
+                    }
+                }
+            );
+
+            // 桌面端功能
+            if(!portrait){
+                $("li.level-0").click(function(event) {
+                    if($(this).hasClass('activeLevel0')){
+                        $(this).removeClass('activeLevel0');
+                    } else {
+                        $('.activeLevel0').removeClass('activeLevel0');
+                        $(this).addClass('activeLevel0');
+                    }
+                });
+
+                $('#nav-121').addClass('activeLevel0');
+
+                $("li.level-1").click(function(event) {
+                    if($(this).hasClass('activeLevel1')){
+                        $(this).removeClass('activeLevel1');
+                    } else {
+                        $("li.level-1").removeClass('activeLevel1');
+                        $(this).addClass('activeLevel1');
+                    }
+                });
+
+                $("li.level-2").click(function(event) {
+                    if($(this).hasClass('activeLevel2')){
+                        $(this).removeClass('activeLevel2');
+                    } else {
+                        $("li.level-2").removeClass('activeLevel2');
+                        $(this).addClass('activeLevel2');
+                    }
+                });
+            }
+
+            // 移动端功能
+            if(portrait){
+                $("#hamburgerMobil").click(function(event) {
+                    $('#hamburgerContent').show();
+                });
+
+                $("#hamburgerContent").click(function(event) {
+                    $('#hamburgerContent').hide();
+                });
+            }
         });
     </script>
 </body>
