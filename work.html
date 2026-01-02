@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works - CANHE能祂</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="artworks.css">
+    <script src="lang-switcher.js"></script>
+</head>
+<body class="artworks-page">
+    <!-- Header -->
+    <header class="artworks-header">
+        <div class="artworks-header-content">
+            <a href="index.html" class="artworks-site-title">CANHE能祂</a>
+            <nav class="artworks-nav">
+                <a href="work.html">Works</a><span class="nav-sep">/</span><a href="#">Writing</a><span class="nav-sep">/</span><a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Artworks Content - Map Section -->
+    <main class="artworks-content">
+        <div class="artworks-container">
+            <aside class="artworks-sidebar left">
+                <div class="artworks-list" id="artworks-list-left">
+                    <!-- 作品列表将通过 JavaScript 动态生成 -->
+                </div>
+            </aside>
+            <div id="map-container"></div>
+            <aside class="artworks-sidebar right">
+                <div class="artworks-list" id="artworks-list-right">
+                    <!-- 作品列表将通过 JavaScript 动态生成 -->
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Quick Preview Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="quick-preview-modal" id="quick-preview-modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-info-side">
+                <div class="modal-title" id="modal-title">TITLE</div>
+                <div class="modal-meta" id="modal-meta">YEAR / TYPE</div>
+                <div class="modal-summary" id="modal-summary">
+                    Summary loading...
+                </div>
+                <div class="modal-axes" id="modal-axes">
+                    <div class="axis-item"><span>THEORY</span> <span class="axis-value" id="modal-theory">-</span></div>
+                    <div class="axis-item"><span>KEYWORDS</span> <span class="axis-value" id="modal-keywords">-</span></div>
+                </div>
+                <div class="modal-actions">
+                    <a href="#" class="btn-open-dossier" id="btn-open-dossier">
+                        MORE INFO <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="works-data.js"></script>
+    <script src="density-grid.js"></script>
+</body>
+</html>

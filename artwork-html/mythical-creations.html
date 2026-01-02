@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mythical Creations of the Ages - CANHE能祂</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../artworks.css">
+    <script src="../lang-switcher.js"></script>
+    <style>
+        .dossier-page {
+            background: #fff;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.01) 2px,
+                    rgba(0, 0, 0, 0.01) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.01) 2px,
+                    rgba(0, 0, 0, 0.01) 4px
+                );
+            background-size: 20px 20px;
+            color: #000;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        /* 导航栏 - 与 index.html 完全一致 */
+        .dossier-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 40px;
+            background: transparent;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .site-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .site-title:hover { opacity: 0.7; }
+        .nav-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #000;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .nav-links a {
+            color: rgba(0, 0, 0, 1);
+            text-decoration: none;
+        }
+        .nav-links a:hover { text-decoration: underline; }
+        
+        .nav-sep {
+            color: rgba(0, 0, 0, 0.3);
+        }
+        
+        .dossier-content {
+            padding: 110px 40px 60px 40px;
+        }
+        
+        /* 标题区域 */
+        .artwork-header {
+            margin-bottom: 40px;
+        }
+        .artwork-title {
+            font-size: 36px;
+            font-weight: 400;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.02em;
+        }
+        .meta-info {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.5);
+            line-height: 1.8;
+        }
+        .meta-info p { margin: 0; }
+        
+        /* Headshot 图片 */
+        .headshot-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+        }
+        .headshot-image img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 两栏布局 */
+        .two-col {
+            display: flex;
+            gap: 6%;
+            margin-bottom: 80px;
+            align-items: flex-start;
+        }
+        .two-col .col-left { flex: 0 0 35%; }
+        .two-col .col-right { flex: 0 0 59%; }
+        
+        .main-image img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-text { font-size: 13px; line-height: 1.7; color: rgba(0, 0, 0, 0.8); }
+        .content-text p { margin-bottom: 15px; }
+        
+        .section-label {
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+        
+        /* 图片网格 */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-works { display: flex; gap: 15px; margin-top: 20px; }
+        .related-link { 
+            color: rgba(0, 0, 0, 0.6); 
+            text-decoration: none; 
+            font-size: 12px; 
+            padding: 8px 16px; 
+            border: 1px solid rgba(0, 0, 0, 0.2); 
+            transition: all 0.2s; 
+        }
+        .related-link:hover { color: #000; border-color: #000; }
+
+        @media (max-width: 900px) {
+            .two-col { flex-direction: column; }
+            .two-col .col-left, .two-col .col-right { flex: none; width: 100%; }
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="dossier-page">
+    
+    <!-- 导航栏 -->
+    <header class="dossier-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-title">CANHE能祂</a>
+            <nav class="nav-links">
+                <a href="../work.html">Works</a><span class="nav-sep">/</span><a href="#">Writing</a><span class="nav-sep">/</span><a href="../about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dossier-content">
+        
+        <!-- 标题区域 -->
+        <div class="artwork-header">
+            <h1 class="artwork-title" data-lang-key="mythicalCreationsTitle">神秘宝石造物</h1>
+            <div class="meta-info">
+                <p>2024 / Painting</p>
+                <p>Software: ComfyUI</p>
+                <p>Size: 200cm x 200cm</p>
+            </div>
+        </div>
+        
+        <!-- 第一区块：左图 + 右概念 -->
+        <div class="two-col">
+            <div class="col-left">
+                <div class="main-image">
+                    <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Icon.png" alt="Mythical Creations of the Ages">
+                </div>
+            </div>
+            
+            <div class="col-right">
+                <div class="section-label">Concept</div>
+                <div class="content-text">
+                    <p>"The Realm of Autumn Treasure: Mythical Creations of the Ages" is an exhibition inspired by mythology and fused with technological innovation, creating a space rich in visual impact and cultural depth. "The Realm" symbolizes a mysterious domain that transcends everyday experiences, while "Autumn Treasures" signifies the maturity and harvest of life, reflecting the cycles and sustainability of nature and human culture.</p>
+
+                    <p>As a testing ground for GenAI technology, the exhibition's works reshape the understanding and interpretation of traditional mythological symbols. Through the new forms generated by GenAI, symbols traditionally rooted in history and cultural heritage are detached from their original imagery and reinterpreted into a modern visual language. This transformation endows them with fluidity, dynamism, and regenerative qualities, turning them into cultural symbols with a renewed vitality.</p>
+                </div>
+
+                <div class="section-label" style="margin-top: 40px;">Related Works</div>
+                <div class="related-works">
+                    <a href="machine-relics.html" class="related-link">Machine Relics</a>
+                    <a href="consumable-icons.html" class="related-link">Cleansing Objects</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 图片网格 -->
+        <div class="image-grid">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_01.jpg" alt="Mythical Creation 1">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_02.jpg" alt="Mythical Creation 2">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_03.jpg" alt="Mythical Creation 3">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_04.jpg" alt="Mythical Creation 4">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_05.jpg" alt="Mythical Creation 5">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_06.jpg" alt="Mythical Creation 6">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_07.jpg" alt="Mythical Creation 7">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_08.jpg" alt="Mythical Creation 8">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_09.jpg" alt="Mythical Creation 9">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_10.jpg" alt="Mythical Creation 10">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_11.jpg" alt="Mythical Creation 11">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_12.jpg" alt="Mythical Creation 12">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_13.jpg" alt="Mythical Creation 13">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_15.jpg" alt="Mythical Creation 15">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_16.jpg" alt="Mythical Creation 16">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_17.jpg" alt="Mythical Creation 17">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_18.jpg" alt="Mythical Creation 18">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_19.jpg" alt="Mythical Creation 19">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_20.jpg" alt="Mythical Creation 20">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_21.jpg" alt="Mythical Creation 21">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_23.jpg" alt="Mythical Creation 23">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_24.jpg" alt="Mythical Creation 24">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_25.jpg" alt="Mythical Creation 25">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_26.jpg" alt="Mythical Creation 26">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_27.jpg" alt="Mythical Creation 27">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_28.jpg" alt="Mythical Creation 28">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_29.jpg" alt="Mythical Creation 29">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_31.jpg" alt="Mythical Creation 31">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_32.jpg" alt="Mythical Creation 32">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_33.jpg" alt="Mythical Creation 33">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_35.jpg" alt="Mythical Creation 35">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_36.jpg" alt="Mythical Creation 36">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_37.jpg" alt="Mythical Creation 37">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_38.jpg" alt="Mythical Creation 38">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_39.jpg" alt="Mythical Creation 39">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_40.jpg" alt="Mythical Creation 40">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_41.jpg" alt="Mythical Creation 41">
+            <img src="../img/design work/HIS REALM NARRATIVES OF LIFE IN THE AGE OF MYTH/Jew_42.jpg" alt="Mythical Creation 42">
+        </div>
+
+    </div>
+</body>
+</html>

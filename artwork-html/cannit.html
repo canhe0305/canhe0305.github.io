@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canit - CANHE能祂</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../artworks.css">
+    <script src="../lang-switcher.js"></script>
+    <style>
+        .dossier-page {
+            background: #fff;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.01) 2px,
+                    rgba(0, 0, 0, 0.01) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.01) 2px,
+                    rgba(0, 0, 0, 0.01) 4px
+                );
+            background-size: 20px 20px;
+            color: #000;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        /* 导航栏 - 与 index.html 完全一致 */
+        .dossier-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 40px;
+            background: transparent;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .site-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .site-title:hover { opacity: 0.7; }
+        .nav-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #000;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .nav-links a {
+            color: rgba(0, 0, 0, 1);
+            text-decoration: none;
+        }
+        .nav-links a:hover { text-decoration: underline; }
+        
+        .nav-sep {
+            color: rgba(0, 0, 0, 0.3);
+        }
+        
+        .dossier-content {
+            padding: 110px 40px 60px 40px;
+        }
+        
+        /* 标题区域 */
+        .artwork-header {
+            margin-bottom: 40px;
+        }
+        .artwork-title {
+            font-size: 36px;
+            font-weight: 400;
+            margin: 0 0 5px 0;
+            letter-spacing: -0.02em;
+        }
+        .artwork-subtitle {
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+        .meta-info {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.5);
+            line-height: 1.8;
+        }
+        .meta-info p { margin: 0; }
+        
+        /* 两栏布局 - 适度缩小图片比例 */
+        .two-col {
+            display: flex;
+            gap: 6%;
+            margin-bottom: 80px;
+            align-items: flex-start;
+        }
+        .two-col .col-left { flex: 0 0 35%; }
+        .two-col .col-right { flex: 0 0 59%; }
+        
+        .main-image img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-text { font-size: 13px; line-height: 1.7; color: rgba(0, 0, 0, 0.8); }
+        .content-text p { margin-bottom: 15px; }
+        
+        .section-label {
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+        
+        .related-works { display: flex; gap: 15px; margin-top: 20px; }
+        .related-link { 
+            color: rgba(0, 0, 0, 0.6); 
+            text-decoration: none; 
+            font-size: 12px; 
+            padding: 8px 16px; 
+            border: 1px solid rgba(0, 0, 0, 0.2); 
+            transition: all 0.2s; 
+        }
+        .related-link:hover { color: #000; border-color: #000; }
+
+        @media (max-width: 900px) {
+            .two-col { flex-direction: column; }
+            .two-col .col-left, .two-col .col-right { flex: none; width: 100%; }
+        }
+    </style>
+</head>
+<body class="dossier-page">
+    
+    <!-- 导航栏 -->
+    <header class="dossier-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-title">CANHE能祂</a>
+            <nav class="nav-links">
+                <a href="../work.html">Works</a><span class="nav-sep">/</span><a href="#">Writing</a><span class="nav-sep">/</span><a href="../about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dossier-content">
+        
+        <!-- 标题区域 -->
+        <div class="artwork-header">
+            <h1 class="artwork-title">Canit</h1>
+            <div class="artwork-subtitle">Non-human Subject</div>
+            <div class="meta-info">
+                <p>2024 / Installation / Performance</p>
+                <p>Material: mini mainframe, camera, composite material</p>
+                <p>Software: Azure, Unity, ChatGPT</p>
+                <p>Size: 65×60×150cm</p>
+            </div>
+        </div>
+        
+        <!-- 第一区块：左图 + 右概念 -->
+        <div class="two-col">
+            <div class="col-left">
+                <div class="main-image">
+                    <img src="../img/art work/canit/canit-icon.jpg" alt="Canit">
+                </div>
+            </div>
+            
+            <div class="col-right">
+                <div class="section-label">Concept</div>
+                <div class="content-text">
+                    <p>'Can It' seeks to break the stereotype of the invisibility of artificially created technology by constructing a series of figurative everyday scenarios, extensively exploring scenarios in which mechanised entities and other non-human agents are present in everyday human life, as well as collecting the reactions and attitudes that the public will display.</p>
+
+                    <p>The work rejects traditional eschatological and utopian narrative frameworks, and instead confronts the realities of how technological hegemony, through dematerialised and abstracted concepts such as "cloud services" and "digitisation", creates misperceptions of technological objects among citizens in the present day.</p>
+
+                    <p>By constructing a series of figurative everyday scenes, this project attempts to break down this artificially created invisibility. These scenes are both an archaeological study of contemporary technological society and a preview of future social forms. Citizens will see the real state of development of technology and gain real perceptions, no longer through internet speakers. At the same time thinking about how to redefine their subjectivity in their interaction with technology.</p>
+
+                    <p>By re-embedding artificial intelligence into specific social contexts, this project reveals how technological hegemony constructs the legitimacy of its domination through the discourse system, explores the correlation between technological invisibility and the mechanism of social control, and analyses the construction of the subjectivity of the general public in technological domination.</p>
+                </div>
+
+                <div class="section-label" style="margin-top: 40px;">Related Works</div>
+                <div class="related-works">
+                    <a href="newman.html" class="related-link">New Man</a>
+                    <a href="where-is-the-price.html" class="related-link">Where is the price</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

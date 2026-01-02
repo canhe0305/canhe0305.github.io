@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triple Merit Students - CANHE能祂</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../artworks.css">
+    <script src="../lang-switcher.js"></script>
+    <style>
+        .dossier-page {
+            background: #fff;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.01) 2px,
+                    rgba(0, 0, 0, 0.01) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.01) 2px,
+                    rgba(0, 0, 0, 0.01) 4px
+                );
+            background-size: 20px 20px;
+            color: #000;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        /* 导航栏 - 必须设置为绝对定位以匹配 index.html */
+        .dossier-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 40px;
+            background: transparent;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .site-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .site-title:hover { opacity: 0.7; }
+        .nav-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #000;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .nav-links a {
+            color: rgba(0, 0, 0, 1);
+            text-decoration: none;
+        }
+        .nav-links a:hover { text-decoration: underline; }
+        
+        .nav-sep {
+            color: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 内容区域 - 需要预留出绝对定位导航栏的高度 */
+        .dossier-content {
+            padding: 110px 40px 60px 40px;
+        }
+        
+        .artwork-header {
+            margin-bottom: 40px;
+        }
+        .artwork-title {
+            font-size: 36px;
+            font-weight: 400;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.02em;
+        }
+        .dossier-meta { font-size: 12px; color: rgba(0, 0, 0, 0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+        
+        .dossier-section { margin-bottom: 80px; max-width: 800px; }
+        .section-label { font-size: 11px; color: rgba(0, 0, 0, 0.3); text-transform: uppercase; margin-bottom: 20px; letter-spacing: 0.2em; }
+        .section-content { font-size: 15px; line-height: 1.8; color: rgba(0, 0, 0, 0.9); }
+        
+        .hero-image { width: 100%; max-width: 600px; margin-bottom: 60px; }
+        .hero-image img { width: 100%; height: auto; border: 1px solid rgba(0, 0, 0, 0.1); }
+        
+        .back-nav { position: fixed; bottom: 40px; left: 40px; z-index: 100; }
+        .btn-back { color: #000; text-decoration: none; font-size: 12px; opacity: 0.6; transition: opacity 0.2s; }
+        .btn-back:hover { opacity: 1; }
+        
+        .coming-soon { color: rgba(0, 0, 0, 0.4); font-style: italic; }
+    </style>
+</head>
+<body class="dossier-page">
+    
+    <!-- 导航栏 -->
+    <header class="dossier-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-title">CANHE能祂</a>
+            <nav class="nav-links">
+                <a href="../work.html">Works</a><span class="nav-sep">/</span><a href="#">Writing</a><span class="nav-sep">/</span><a href="../about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dossier-content">
+        <header class="artwork-header">
+            <h1 class="artwork-title">Triple Merit Students</h1>
+            <div class="dossier-meta">2024 / Painting / SPECTACLE</div>
+        </header>
+
+        <div class="hero-image">
+            <img src="../img/art work/Triple Merit Students/Triple Merit Students-icon.jpg" alt="Triple Merit Students">
+        </div>
+
+        <section class="dossier-section">
+            <div class="section-label">Index Statement</div>
+            <div class="section-content coming-soon">
+                Coming soon...
+            </div>
+        </section>
+    </div>
+</body>
+</html>

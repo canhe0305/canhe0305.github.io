@@ -1,0 +1,894 @@
+.artworks-page {
+    background-color: #ffffff;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        );
+    background-size: 20px 20px;
+    overflow: hidden; /* 根治全局滚动导致的抖动 */
+    height: 100vh;
+}
+
+.artworks-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 40px;
+    background: transparent;
+    z-index: 1000; /* 提升层级，确保不被地图覆盖 */
+}
+
+.artworks-sidebar {
+    width: 20%; /* 缩小宽度至 1/5 */
+    background-color: #ffffff;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        );
+    background-size: 20px 20px;
+    padding: 20px 40px 40px 40px; /* 关键：左间距改为 40px 与 Header 对齐 */
+    overflow-y: scroll; 
+    /* 隐藏滚动条外观但保留功能 */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.artworks-sidebar.left {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.artworks-sidebar.right {
+    padding: 20px 40px 40px 40px; 
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* About 页面专用侧边栏样式 */
+.artworks-page .artworks-sidebar:not(.left):not(.right) {
+    width: 25%;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        );
+    background-size: 20px 20px;
+    padding: 100px 40px 60px 40px;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Quick Preview Modal 样式 - 沉浸式透明悬浮索引条 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: none; 
+    justify-content: center;
+    align-items: center; /* 改为居中，让索引信息和图片一起居中 */
+    z-index: 2000;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 40px 20px; /* 统一的四周内边距 */
+}
+
+.modal-overlay.fading {
+    opacity: 0;
+}
+
+
+.quick-preview-modal {
+    background: transparent;
+    width: 100%;
+    max-width: 800px;
+    border: none;
+    padding: 0;
+    margin-top: calc(35vh + 320px); /* 图片在35%高度，索引信息在其下方320px，确保足够间距 */
+    position: relative;
+    color: #000;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.modal-info-side {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    animation: fadeInFocused 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInFocused {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 匹配截图中的超大标题 */
+.modal-title {
+    font-size: 84px; /* 极大字号 */
+    font-weight: 400;
+    margin-bottom: 5px;
+    letter-spacing: -0.04em;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.modal-meta {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 30px;
+}
+
+.modal-summary {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(0, 0, 0, 0.8);
+    max-width: 500px; /* 限制摘要宽度，匹配截图 */
+    margin-bottom: 40px;
+    margin-left: auto; /* 确保居中 */
+    margin-right: auto; /* 确保居中 */
+}
+
+.modal-axes {
+    border: none; /* 移除分割线 */
+    width: 100%;
+    max-width: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 左右两列 */
+    gap: 40px;
+    margin-bottom: 60px;
+    margin-left: auto; /* 确保居中 */
+    margin-right: auto; /* 确保居中 */
+}
+
+.axis-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 5px;
+}
+
+.axis-item span:first-child {
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.axis-value {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-actions {
+    margin-top: 20px;
+}
+
+.modal-close {
+    position: fixed;
+    top: 40px;
+    right: 40px; /* 移到最右边 */
+    background: rgba(0,0,0,0.05);
+    border: none;
+    color: rgba(0, 0, 0, 0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2100;
+    pointer-events: auto;
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.modal-close {
+    position: fixed; /* 固定在右上角 */
+    top: 40px;
+    right: 22%; /* 避开右侧作品栏 */
+    background: rgba(0,0,0,0.1);
+    pointer-events: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.modal-close:hover { color: #fff; }
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.modal-meta {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+}
+
+.modal-summary {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 30px;
+}
+
+/* modal-axes 样式已在上面定义，此处删除重复定义 */
+
+.axis-value { color: rgba(0, 0, 0, 0.9); }
+
+/* 响应式设计 - 确保索引信息在不同分辨率下可见且居中 */
+
+/* 针对 2560x1600 (16:10) 宽屏优化 - 所有字体缩小一半 */
+@media (min-width: 2500px) and (min-height: 1500px) and (max-height: 1700px) {
+    .modal-overlay {
+        align-items: center; /* 确保垂直居中 */
+        padding: 60px 40px; /* 增加四周内边距 */
+    }
+    .quick-preview-modal {
+        margin-top: calc(35vh + 380px); /* 增加间距，确保图片和索引信息不碰撞 */
+        max-width: 900px; /* 稍微放宽最大宽度，利用宽屏空间 */
+    }
+    .modal-title {
+        font-size: 10px; /* 缩小一半：20px → 10px */
+        margin-bottom: 5px;
+    }
+    .modal-meta {
+        font-size: 5.5px; /* 缩小一半：11px → 5.5px */
+        margin-bottom: 15px;
+    }
+    .modal-summary {
+        font-size: 6.5px; /* 缩小一半：13px → 6.5px */
+        line-height: 1.8;
+        max-width: 650px; /* 利用宽屏空间，但保持可读性 */
+        margin-bottom: 22px;
+    }
+    .modal-axes {
+        max-width: 650px;
+        gap: 60px; /* 增加两列之间的间距，让内容更舒展 */
+        margin-bottom: 30px;
+    }
+    .axis-item {
+        font-size: 5px; /* 缩小一半：10px → 5px */
+    }
+    .axis-item span:first-child {
+        font-size: 5px; /* 缩小一半：10px → 5px */
+    }
+    .axis-value {
+        font-size: 6px; /* 缩小一半：12px → 6px */
+    }
+    .btn-open-dossier {
+        font-size: 6.5px; /* 缩小一半：13px → 6.5px */
+    }
+}
+
+@media (max-height: 1000px) {
+    .quick-preview-modal {
+        margin-top: calc(35vh + 280px); /* 稍微减少间距，但保持足够空间 */
+    }
+}
+
+@media (max-height: 900px) {
+    .quick-preview-modal {
+        margin-top: calc(35vh + 260px);
+    }
+}
+
+@media (max-height: 800px) {
+    .quick-preview-modal {
+        margin-top: calc(35vh + 240px);
+    }
+    .modal-title {
+        font-size: 24px;
+    }
+    .modal-summary {
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-height: 700px) {
+    .quick-preview-modal {
+        margin-top: calc(35vh + 220px);
+    }
+    .modal-title {
+        font-size: 20px;
+    }
+    .modal-meta {
+        font-size: 10px;
+        margin-bottom: 20px;
+    }
+    .modal-summary {
+        font-size: 12px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+    .modal-axes {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-height: 600px) {
+    .quick-preview-modal {
+        margin-top: calc(35vh + 180px);
+    }
+    .modal-title {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .modal-meta {
+        font-size: 10px;
+        margin-bottom: 15px;
+    }
+    .modal-summary {
+        font-size: 11px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        max-width: 100%;
+    }
+    .modal-axes {
+        padding-top: 15px;
+        margin-bottom: 20px;
+        gap: 30px;
+    }
+    .axis-item {
+        font-size: 10px;
+    }
+}
+
+@media (max-height: 500px) {
+    .quick-preview-modal {
+        margin-top: calc(35vh + 140px);
+    }
+    .modal-title {
+        font-size: 16px;
+    }
+    .modal-meta {
+        font-size: 9px;
+        margin-bottom: 12px;
+    }
+    .modal-summary {
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+    .modal-axes {
+        padding-top: 12px;
+        margin-bottom: 15px;
+        gap: 20px;
+    }
+}
+
+/* 横向小屏幕适配 */
+@media (max-width: 768px) {
+    .quick-preview-modal {
+        max-width: 100%;
+        padding: 0 15px 30px 15px;
+    }
+    .modal-title {
+        font-size: 20px;
+    }
+    .modal-summary {
+        max-width: 100%;
+    }
+}
+
+/* 极端小屏幕 */
+@media (max-width: 480px) {
+    .quick-preview-modal {
+        padding: 0 12px 20px 12px;
+    }
+    .modal-title {
+        font-size: 18px;
+    }
+    .modal-summary {
+        font-size: 12px;
+    }
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-open-dossier {
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    text-decoration: none;
+}
+
+.btn-open-dossier:hover { opacity: 1; }
+
+.artworks-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.artworks-site-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.artworks-site-title:hover {
+    opacity: 0.7;
+}
+
+.artworks-nav {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 3px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.nav-links {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 3px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.nav-sep {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.artworks-nav a {
+    color: rgba(0, 0, 0, 1);
+    text-decoration: none;
+}
+
+.artworks-nav a:hover {
+    text-decoration: underline;
+}
+
+.lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 20px;
+    gap: 3px;
+}
+
+.lang-switcher-btn {
+    background: transparent;
+    border: none;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 0;
+}
+
+.lang-switcher-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.lang-switcher-btn.active {
+    color: #000000;
+    font-weight: 500;
+}
+
+.artworks-content {
+    background-color: #ffffff;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    margin-top: 0;
+    padding-top: 60px; /* 减小顶部留白，让内容上移 */
+    /* 噪波效果 */
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        );
+    background-size: 20px 20px;
+}
+
+.artworks-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0,0,0,0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0,0,0,0.02) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0,0,0,0.02) 0%, transparent 50%);
+    animation: noiseMove 20s infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes noiseMove {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+    }
+    25% {
+        transform: translate(10px, -15px) scale(1.1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-15px, 10px) scale(0.9);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translate(15px, 15px) scale(1.05);
+        opacity: 0.65;
+    }
+}
+
+.artworks-container {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    height: calc(100vh - 85px);
+}
+
+.artworks-sidebar {
+    width: 20%; /* 缩小宽度至 1/5 */
+    background-color: #ffffff;
+    padding: 20px 40px 40px 40px; /* 关键：左间距改为 40px 与 Header 对齐 */
+    overflow-y: scroll; 
+    /* 隐藏滚动条外观但保留功能 */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.artworks-sidebar.left {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.artworks-sidebar.right {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.artworks-sidebar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.artworks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* 彻底移除自动间距，改由 JS 精确控制 */
+}
+
+.artwork-item {
+    color: rgba(0, 0, 0, 0.4); /* 同步 about.html 的初始颜色 */
+    font-size: 12px; /* 与 about-nav-item 保持一致 */
+    font-weight: 400;
+    line-height: 1.5; /* 同步 about-nav-item 的行高 */
+    letter-spacing: 0.05em; /* 同步 about-nav-item 的字间距 */
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.artwork-item:hover {
+    opacity: 0.7;
+}
+
+/* map-container 自动占据中间 3/5 空间 */
+#map-container {
+    /* 彻底禁止硬件加速相关的平滑过渡，因为 D3 已经处理了每一帧的位移 */
+    transform: none;
+    will-change: auto;
+    backface-visibility: hidden;
+    flex: 1; 
+    height: 100%;
+    background-color: #ffffff;
+    position: relative; 
+    overflow: hidden;
+    /* 避免 sub-pixel 渲染带来的微小位移 */
+    box-sizing: border-box;
+}
+
+#map-container svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* 固定渲染质量，避免在移动时动态切换导致闪烁 */
+    shape-rendering: geometricPrecision;
+    text-rendering: geometricPrecision;
+    image-rendering: auto;
+    position: absolute; /* 改为 absolute 确保坐标系稳定 */
+    top: 0;
+    left: 0;
+    isolation: isolate;
+}
+
+.density-info-panel {
+    pointer-events: auto;
+}
+
+.export-btn:hover {
+    background: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* About 页面样式 */
+.about-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 20px;
+}
+
+.about-nav-item {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 12px 0;
+    border-bottom: 1px solid transparent;
+    position: relative;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.about-nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.3);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-nav-item:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.about-nav-item:hover::before {
+    width: 30px;
+}
+
+.about-nav-item.active {
+    color: #000000;
+    font-weight: 500;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+}
+
+.about-nav-item.active::before {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.about-lang-switcher {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.lang-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+    border-color: rgba(0, 0, 0, 0.4);
+}
+
+.lang-btn.active {
+    color: #000000;
+    border-color: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.about-content-wrapper {
+    width: 75%;
+    position: relative;
+    padding: 120px 60px 60px 80px; /* padding-top: 120px 与左侧导航栏内容对齐（100px + 20px） */
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.about-content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.about-content {
+    color: #000000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-width: 700px;
+    animation: fadeInContent 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about-title {
+    font-size: 32px;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 60px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+}
+
+.about-section-content {
+    margin-top: 0;
+}
+
+.about-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(0, 0, 0, 0.85);
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+    font-weight: 300;
+}
+
+.about-text:last-child {
+    margin-bottom: 0;
+}
+
+.about-text a {
+    color: rgba(0, 0, 0, 0.9);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.about-text a:hover {
+    color: #000000;
+    border-bottom-color: rgba(0, 0, 0, 0.6);
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+    margin: 32px 0;
+}
+
+.about-list li {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(0, 0, 0, 0.85);
+    margin-bottom: 16px;
+    padding-left: 24px;
+    position: relative;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+}
+
+.about-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 300;
+}

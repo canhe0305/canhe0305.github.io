@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where is the Price - CANHE能祂</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../artworks.css">
+    <script src="../lang-switcher.js"></script>
+    <style>
+        .dossier-page {
+            background: #fff;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.01) 2px,
+                    rgba(0, 0, 0, 0.01) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.01) 2px,
+                    rgba(0, 0, 0, 0.01) 4px
+                );
+            background-size: 20px 20px;
+            color: #000;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        /* 导航栏 - 必须设置为绝对定位以匹配 index.html */
+        .dossier-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 40px;
+            background: transparent;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .site-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .site-title:hover { opacity: 0.7; }
+        .nav-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #000;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .nav-links a {
+            color: rgba(0, 0, 0, 1);
+            text-decoration: none;
+        }
+        .nav-links a:hover { text-decoration: underline; }
+        
+        .nav-sep {
+            color: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 内容区域 - 需要预留出绝对定位导航栏的高度 */
+        .dossier-content {
+            padding: 110px 40px 60px 40px; /* 30px padding-top + 约80px 导航空间 */
+        }
+        
+        /* 标题区域 - 在两栏上方 */
+        .artwork-header {
+            margin-bottom: 40px;
+        }
+        .artwork-title {
+            font-size: 36px;
+            font-weight: 400;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.02em;
+        }
+        
+        /* 两栏布局 - 适度缩小图片比例 */
+        .two-col {
+            display: flex;
+            gap: 6%;
+            margin-bottom: 80px;
+            align-items: flex-start;
+        }
+        .two-col .col-left { flex: 0 0 35%; } /* 图片缩小至 35% */
+        .two-col .col-right { flex: 0 0 59%; } /* 文字占 59% */
+        
+        .meta-info {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        .meta-info p { margin: 0; }
+        
+        .main-image img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-text { font-size: 13px; line-height: 1.7; color: rgba(0, 0, 0, 0.8); }
+        .content-text p { margin-bottom: 15px; }
+        
+        /* 概念下方的小图 */
+        .concept-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .concept-images img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .concept-images .img-caption {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.4);
+            margin-top: 8px;
+        }
+        .concept-images .img-caption a {
+            color: rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+        }
+        .concept-images .img-caption a:hover { color: #000; }
+        
+        /* On the Map 区域 - 1:1 对半分 */
+        .map-section {
+            display: flex;
+            gap: 4%;
+            margin-bottom: 80px;
+        }
+        .map-section .map-text { flex: 0 0 48%; }
+        .map-section .map-images { 
+            flex: 0 0 48%; 
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            align-content: start;
+        }
+        .map-section .map-images img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Banner 4列展示 */
+        .banner-section {
+            margin-bottom: 80px;
+        }
+        .banner-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .banner-grid img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Installation 2列大图 */
+        .install-section {
+            margin-bottom: 80px;
+        }
+        .section-label {
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+        .install-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .install-grid img {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 900px) {
+            .two-col, .map-section { flex-direction: column; }
+            .two-col .col-left, .two-col .col-right,
+            .map-section .map-text, .map-section .map-images { flex: none; width: 100%; }
+            .banner-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body class="dossier-page">
+    
+    <!-- 导航栏 -->
+    <header class="dossier-header">
+        <div class="header-content">
+            <a href="../index.html" class="site-title">CANHE能祂</a>
+            <nav class="nav-links">
+                <a href="../work.html">Works</a><span class="nav-sep">/</span><a href="#">Writing</a><span class="nav-sep">/</span><a href="../about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dossier-content">
+        
+        <!-- 标题区域 - 在两栏上方 -->
+        <div class="artwork-header">
+            <h1 class="artwork-title">Where is the Price</h1>
+            <div class="meta-info">
+                <p>2025 / Installation / 200×400×100 cm</p>
+            </div>
+        </div>
+        
+        <!-- 第一区块：左图 + 右概念（顶部对齐） -->
+        <div class="two-col">
+            <div class="col-left">
+                <div class="main-image">
+                    <img src="../img/art work/where is the price/where is the price-icon.jpg" alt="Where is the Price">
+                </div>
+            </div>
+            
+            <div class="col-right concept-area">
+                
+                <div class="content-text">
+                    <p>This work exposes the "invisible labor" and "material exploitation" underlying the operation of artificial intelligence. From the extraction of rare metals and the refining of crystalline silicon, to the manufacturing and packaging of chips, the operation of data centers, and the recycling of electronic waste, it maps out a global and uneven division of labor that sustains AI's material infrastructure. Through visual maps, sculptural forms, and animation, the work delineates the complex physical network upon which AI—often perceived as purely virtual—is built, a network frequently obscured by the aesthetics of technology and the dominant discourse of "cloud-based intelligence."</p>
+                    
+                    <p>The project unfolds through multiple perspectives and formal strategies—such as a north-south oriented cartographic structure, anthropomorphic AI sculptures, and animated flows of extracted materials—to repeatedly articulate and transform a central argument: AI is not an immaterial and harmless intelligence, but a deeply material, labor-intensive system embedded within global structures of social and economic exploitation. This repetition is not merely structural, but functions as a form of resistance—pushing back against the widespread, de-materialized and overly "friendly" representations of AI in mainstream technological narratives.</p>
+                    
+                    <p>Through this polyphonic visual composition, the work seeks to construct a more transparent visual language for AI—one that makes visible not only its algorithmic results but also the costs that produce them; not only its computational precision but the material shadows and social foundations that underpin it.</p>
+                    
+                    <p>More crucially, while contemporary AI research is predominantly oriented toward technical breakthroughs and workflow optimization—seeking faster, more efficient, and more scalable systems—the humanistic and artistic engagement with AI remains significantly marginalized. These dominant approaches often abstract AI into a purely computational or managerial logic, sidelining questions of material labor, social cost, and ethical accountability. This work positions itself within that gap—as a provocation, a "throwing of the brick to attract the jade," hoping to spark broader reflection and creative inquiry into the material and sociopolitical dimensions of AI systems.</p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 第二区块：On the Map - 左文右图 -->
+        <div class="map-section">
+            <div class="map-text">
+                <div class="content-text">
+                    <p>In the visual order established by colonial geography and Cold War mapping traditions, the horizontally oriented world map not only silently disciplines our geographical imagination but also subtly builds hierarchical narratives between center and periphery, and between North and South. Maps are essentially a visual coding system of power and knowledge. They deeply influence how we perceive the world.</p>
+                    
+                    <p>This map uses a "De-urbanization" symbolic strategy: it intentionally removes human settlements and national borders found in traditional maps. Instead, it shows supply chains and material flows, highlighting the dynamic distribution of the techno-material complex.</p>
+                    
+                    <p>This symbolic stripping not only aims to break down the default geo-political narrative but also tries to create new conditions for spatial perception. It forces viewers to detach from the traditional spatial paradigms shaped by nations and ethnicity, inviting a new way to reconsider the overall relations of global space.</p>
+                    
+                    <p>This approach seeks to offer a new way of understanding maps. It invites viewers to perceive the complex ecology formed by algorithms, energy, minerals, and logistics networks. It encourages a re-examination of the geographic structure where global resources, technology, and power are intertwined, revealing the hidden infrastructure that supports the modern world.</p>
+                    
+                    <p>On a deeper narrative level, we are now in a "techno-geological age" — a time when algorithmic technology and geological materials are deeply intertwined.</p>
+                    
+                    <p>Previous North-South hierarchical narratives, especially in globalization discourse, have effectively hidden the increasingly important role of the Global South in global technology infrastructure networks.</p>
+                    
+                    <p>In this new map, the Global South is no longer just a passive "resource provider" or object in traditional geopolitical stories. Instead, it is becoming a core node for global computing networks, data centers, power facilities, and rare earth mineral supply chains.</p>
+                    
+                    <p>Therefore, choosing a vertical projection for the world map is not just a design choice. It is an act of "cartographic reorientation" that brings renewed attention to the technological infrastructure and power networks long ignored by tech company narratives. It also questions tech companies' longstanding claims of "cloud services" being immaterial.</p>
+                </div>
+            </div>
+            
+            <div class="map-images">
+                <img src="../img/art work/where is the price/map.jpg" alt="Map Front">
+                <img src="../img/art work/where is the price/map2反面.jpg" alt="Map Back">
+            </div>
+        </div>
+        
+        <!-- 第三区块：Banner 4列展示 -->
+        <div class="banner-section">
+            <div class="banner-grid">
+                <img src="../img/art work/where is the price/final map/反面process.jpg" alt="Banner 1">
+                <img src="../img/art work/where is the price/final map/反面img.jpg" alt="Banner 2">
+                <img src="../img/art work/where is the price/map2.jpg" alt="Banner 3">
+                <img src="../img/art work/where is the price/map3.jpg" alt="Banner 4">
+            </div>
+        </div>
+        
+        <!-- 第四区块：Installation 2列大图 -->
+        <div class="install-section">
+            <div class="install-grid">
+                <img src="../img/art work/where is the price/final  pic/left.jpg" alt="Installation Left">
+                <img src="../img/art work/where is the price/final  pic/back.jpg" alt="Installation Back">
+                <img src="../img/art work/where is the price/detail.jpg" alt="Detail">
+                <img src="../img/art work/where is the price/right.jpg" alt="Right">
+            </div>
+        </div>
+        
+        <!-- 第五区块：Animation -->
+        <div class="install-section">
+            <div class="section-label">Animation</div>
+            <div class="install-grid">
+                <img src="../img/art work/where is the price/sculpture.jpg" alt="Animation Still">
+                <img src="../img/art work/where is the price/final  pic/detail1.jpg" alt="Detail">
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

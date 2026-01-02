@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - CANHE能祂</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="artworks.css">
+    <script src="lang-switcher.js"></script>
+</head>
+<body class="artworks-page">
+    <!-- Header -->
+    <header class="artworks-header">
+        <div class="artworks-header-content">
+            <a href="index.html" class="artworks-site-title">CANHE能祂</a>
+            <nav class="artworks-nav">
+                <a href="work.html">Works</a><span class="nav-sep">/</span><a href="#">Writing</a><span class="nav-sep">/</span><a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Content -->
+    <main class="artworks-content">
+        <div class="artworks-container">
+            <aside class="artworks-sidebar">
+                <div class="about-nav-list">
+                    <div class="about-nav-item active" data-section="short-bio" data-lang-key="aboutNavShortBio"></div>
+                    <div class="about-nav-item" data-section="long-bio" data-lang-key="aboutNavLongBio"></div>
+                    <div class="about-nav-item" data-section="contact" data-lang-key="aboutNavContact"></div>
+                    <div class="about-nav-item" data-section="cv" data-lang-key="aboutNavCV"></div>
+                </div>
+            </aside>
+            <div class="about-content-wrapper">
+                <div class="about-content" id="about-content">
+                    <!-- 内容将通过 JavaScript 动态显示 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="about.js"></script>
+</body>
+</html>

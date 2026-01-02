@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier - CANHE能祂</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="artworks.css">
+    <style>
+        .dossier-page {
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            padding: 80px 40px;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .dossier-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 40px;
+            margin-bottom: 60px;
+        }
+        .dossier-title { font-size: 32px; font-weight: 500; margin-bottom: 10px; }
+        .dossier-meta { font-size: 12px; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+        
+        .dossier-section { margin-bottom: 80px; max-width: 800px; }
+        .section-label { font-size: 11px; color: rgba(255, 255, 255, 0.3); text-transform: uppercase; margin-bottom: 20px; letter-spacing: 0.2em; }
+        .section-content { font-size: 15px; line-height: 1.8; color: rgba(255, 255, 255, 0.9); }
+        
+        .system-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .system-item { border: 1px solid rgba(255, 255, 255, 0.1); padding: 20px; }
+        .system-label { font-size: 10px; color: rgba(255, 255, 255, 0.4); margin-bottom: 10px; }
+        
+        .evidence-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .evidence-item img { width: 100%; height: auto; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .evidence-caption { font-size: 11px; color: rgba(255, 255, 255, 0.4); margin-top: 10px; }
+        
+        .back-nav { position: fixed; bottom: 40px; left: 40px; z-index: 100; }
+        .btn-back { color: #fff; text-decoration: none; font-size: 12px; opacity: 0.6; transition: opacity 0.2; }
+        .btn-back:hover { opacity: 1; }
+    </style>
+</head>
+<body class="dossier-page">
+    <div class="back-nav">
+        <a href="work.html" id="link-back" class="btn-back">&larr; BACK TO MAP</a>
+    </div>
+
+    <div id="dossier-container">
+        <!-- Content injected by JS -->
+        <div style="opacity: 0.5">Loading dossier...</div>
+    </div>
+
+    <script src="works-data.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('slug');
+        const work = window.worksData.find(a => a.slug === slug);
+
+        if (work) {
+            document.title = `${work.name} - Dossier`;
+            document.getElementById('link-back').href = `work.html#${work.slug}`;
+            
+            const container = document.getElementById('dossier-container');
+            container.innerHTML = `
+                <header class="dossier-header">
+                    <div class="dossier-title">${work.name}</div>
+                    <div class="dossier-meta">${work.year} / ${work.type || 'WORK'} / ${work.theory.toUpperCase()}</div>
+                </header>
+
+                <section class="dossier-section">
+                    <div class="section-label">Index Statement</div>
+                    <div class="section-content">${work.indexStatement || 'Coming soon...'}</div>
+                </section>
+
+                <section class="dossier-section">
+                    <div class="section-label">System Structure</div>
+                    <div class="system-grid">
+                        <div class="system-item"><div class="system-label">INPUT</div>${work.systemStructure?.input || '-'}</div>
+                        <div class="system-item"><div class="system-label">PROCESSING</div>${work.systemStructure?.processing || '-'}</div>
+                        <div class="system-item"><div class="system-label">OUTPUT</div>${work.systemStructure?.output || '-'}</div>
+                        <div class="system-item"><div class="system-label">FAILURE</div>${work.systemStructure?.failure || '-'}</div>
+                    </div>
+                </section>
+
+                <section class="dossier-section">
+                    <div class="section-label">Exhibition Evidence</div>
+                    <div class="evidence-grid">
+                        ${(work.exhibitionEvidence || []).map(e => `
+                            <div class="evidence-item">
+                                <img src="${e.img}" alt="Exhibition">
+                                <div class="evidence-caption">${e.caption}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+            `;
+        } else {
+            document.getElementById('dossier-container').innerHTML = 'Work not found.';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+Where is the Price
+
+2025
+
+Type: Installation
+
+​Size: 200*400*100 cm
+
+Concept:This work exposes the "invisible labor" and "material exploitation" underlying the operation of artificial intelligence. From the extraction of rare metals and the refining of crystalline silicon, to the manufacturing and packaging of chips, the operation of data centers, and the recycling of electronic waste, it maps out a global and uneven division of labor that sustains AI's material infrastructure. Through visual maps, sculptural forms, and animation, the work delineates the complex physical network upon which AI—often perceived as purely virtual—is built, a network frequently obscured by the aesthetics of technology and the dominant discourse of “cloud-based intelligence.”
+
+​
+
+The project unfolds through multiple perspectives and formal strategies—such as a north-south oriented cartographic structure, anthropomorphic AI sculptures, and animated flows of extracted materials—to repeatedly articulate and transform a central argument: AI is not an immaterial and harmless intelligence, but a deeply material, labor-intensive system embedded within global structures of social and economic exploitation. This repetition is not merely structural, but functions as a form of resistance—pushing back against the widespread, de-materialized and overly “friendly” representations of AI in mainstream technological narratives.
+
+​
+
+Through this polyphonic visual composition, the work seeks to construct a more transparent visual language for AI—one that makes visible not only its algorithmic results but also the costs that produce them; not only its computational precision but the material shadows and social foundations that underpin it.
+
+​
+
+More crucially, while contemporary AI research is predominantly oriented toward technical breakthroughs and workflow optimization—seeking faster, more efficient, and more scalable systems—the humanistic and artistic engagement with AI remains significantly marginalized. These dominant approaches often abstract AI into a purely computational or managerial logic, sidelining questions of material labor, social cost, and ethical accountability. This work positions itself within that gap—as a provocation, a “throwing of the brick to attract the jade,” hoping to spark broader reflection and creative inquiry into the material and sociopolitical dimensions of AI systems.
+
+
+Research Link : https://drive.google.com/file/d/17671hu0HbwYm5KjYauKTjvjvpyYyHF1t/view?usp=drive_link
+small wordmap2.jpg
+
+Banner : https://drive.google.com/drive/folders/1pczM8LWcP8Zk4USNgO6LvWpchF0DLQZ1?usp=drive_link
+left.jpg
+
+Installation
+
+underneath
+Untitled video - Made with Clipchamp (1).gif
+
+Animation
+
+underneath
+
+
+In the visual order established by colonial geography and Cold War mapping traditions, the horizontally oriented world map not only silently disciplines our geographical imagination but also subtly builds hierarchical narratives between center and periphery, and between North and South. Maps are essentially a visual coding system of power and knowledge. They deeply influence how we perceive the world.
+
+This map uses a “De-urbanization” symbolic strategy:it intentionally removes human settlements and national borders found in traditional maps. Instead, it shows supply chains and material flows, highlighting the dynamic distribution of the techno-material complex.
+
+This symbolic stripping not only aims to break down the default geo-political narrative but also tries to create new conditions for spatial perception.
+
+It forces viewers to detach from the traditional spatial paradigms shaped by nations and ethnicity, inviting a new way to reconsider the overall relations of global space.
+
+This approach seeks to offer a new way of understanding maps. It invites viewers to perceive the complex ecology formed by algorithms, energy, minerals, and logistics networks.
+
+It encourages a re-examination of the geographic structure where global resources, technology, and power are intertwined, revealing the hidden infrastructure that supports the modern world.
+
+On a deeper narrative level, we are now in a “techno-geological age” — a time when algorithmic technology and geological materials are deeply intertwined.
+
+Previous North-South hierarchical narratives, especially in globalization discourse, have effectively hidden the increasingly important role of the Global South in global technology infrastructure networks.
+
+In this new map, the Global South is no longer just a passive “resource provider” or object in traditional geopolitical stories. Instead, it is becoming a core node for global computing networks, data centers, power facilities, and rare earth mineral supply chains.
+
+Therefore, choosing a vertical projection for the world map is not just a design choice.
+
+It is an act of “cartographic reorientation” that brings renewed attention to the technological infrastructure and power networks long ignored by tech company narratives. It also questions tech companies’ longstanding claims of “cloud services” being immaterial.
+
