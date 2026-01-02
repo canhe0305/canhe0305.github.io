@@ -59,9 +59,9 @@
         { name: 'Breckenridge', lat: 39.4817, lng: -106.0384, density: 4 },
         { name: 'Aspen', lat: 39.1911, lng: -106.8175, density: 3 },
         { name: 'Steamboat Springs', lat: 40.4850, lng: -106.8317, density: 3.5 },
-        { name: 'Huoma', lat: 41.25, lng: -102.75, density: 5 },
-        { name: 'Where is the price', lat: 38.0, lng: -107.2, density: 4 },
-        { name: 'The block and the tower', lat: 40.9, lng: -106.4, density: 4 },
+        { name: 'Obedience Play', lat: 41.25, lng: -102.75, density: 5 },
+        { name: 'Where Is the Price', lat: 38.0, lng: -107.2, density: 4 },
+        { name: 'The Block and the Tower', lat: 40.9, lng: -106.4, density: 4 },
         { name: 'Cannit', lat: 38.6, lng: -103.8, density: 4 },
         { name: 'The fallen gospel', lat: 40.6, lng: -103.4, density: 4 },
         { name: 'The awkward relationship', lat: 40.1, lng: -106.0, density: 4 },
@@ -76,15 +76,15 @@
     // 添加城市标签
     cities.forEach(city => {
         // 如果是作品，添加图片覆盖层（会随地图缩放而放大）
-        const artworkNames = ['Huoma', 'Where is the price', 'The block and the tower', 'Cannit', 'The fallen gospel', 'The awkward relationship', 'Newman', 'Machine relics', 'Triple Merit Students', 'Consumable Icons', 'Treasure of the Mundane World'];
+        const artworkNames = ['Obedience Play', 'Where Is the Price', 'The Block and the Tower', 'Canit', 'The Fallen Gospel', 'Awkward Relationship', 'New Man', 'Machine Relics', 'Triple Merit Students', 'Cleansing Objects', 'Treasure of the Mundane World'];
         if (artworkNames.includes(city.name)) {
             // 根据作品名称选择对应的图片
             let imagePath;
-            if (city.name === 'Huoma') {
-                imagePath = 'img/art work/huoma/huoma.jpg';
-            } else if (city.name === 'Where is the price') {
+            if (city.name === 'Obedience Play') {
+                imagePath = 'img/art work/Obedience Play/Obedience Play-icon.png';
+            } else if (city.name === 'Where Is the Price') {
                 imagePath = 'img/art work/where is the price/where is the price-icon.jpg';
-            } else if (city.name === 'The block and the tower') {
+            } else if (city.name === 'The Block and the Tower') {
                 imagePath = 'img/art work/The block and the tower/the block and the tower-icon.jpg';
             } else if (city.name === 'Cannit') {
                 imagePath = 'img/art work/canit/canit-icon.jpg';
@@ -115,9 +115,9 @@
                 // 根据图片宽高比定义图片覆盖的地理区域（保持原始比例）
                 // 不同作品使用不同大小
                 let baseSize = 0.3;
-                if (city.name === 'Where is the price') {
+                if (city.name === 'Where Is the Price') {
                     baseSize = 0.5;
-                } else if (city.name === 'The block and the tower') {
+                } else if (city.name === 'The Block and the Tower') {
                     baseSize = 0.4;
                 } else if (city.name === 'Cannit') {
                     baseSize = 0.35;
@@ -286,7 +286,7 @@
     // 生成作品列表（从实际数据中提取）
     const artworksList = document.getElementById('artworks-list');
     if (artworksList) {
-        const artworkNames = ['Huoma', 'Where is the price', 'The block and the tower', 'Cannit', 'The fallen gospel', 'The awkward relationship', 'Newman', 'Machine relics', 'Triple Merit Students', 'Consumable Icons', 'Treasure of the Mundane World'];
+        const artworkNames = ['Obedience Play', 'Where Is the Price', 'The Block and the Tower', 'Canit', 'The Fallen Gospel', 'Awkward Relationship', 'New Man', 'Machine Relics', 'Triple Merit Students', 'Cleansing Objects', 'Treasure of the Mundane World'];
         
         // 按照在 cities 数组中的顺序显示
         cities.forEach(city => {

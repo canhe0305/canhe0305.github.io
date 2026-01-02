@@ -1,10 +1,10 @@
 // 作品全量元数据
 const worksData = [
     { 
-        slug: 'huoma',
-        name: 'Taming Theatre',
-        nameZh: '驯服戏剧',
-        nameEn: 'Taming Theatre', 
+        slug: 'obedience-play',
+        name: 'Obedience Play',
+        nameZh: 'Obedience Play',
+        nameEn: 'Obedience Play', 
         year: 2025,
         type: 'Performative Technological Apparatus',
         typeZh: '表演性技术装置',
@@ -12,12 +12,12 @@ const worksData = [
         theoryZh: '物质',
         keywords: ['Non-human Agency', 'Technological Domestication', 'Resistance'],
         keywordsZh: ['非人类能动性', '技术驯化', '抵抗'],
-        image: 'img/art work/huoma/huoma.jpg',
+        image: 'img/art work/Obedience Play/Obedience Play-icon.png',
         x: 0.25, y: 0.25, // 左上角：复杂雕塑/建筑片段
         indexNote: 'Reconfiguring the mythological Fire Horse into a performative apparatus that interrupts efficiency-driven service logic through clumsy, emotionalized responses.',
         indexNoteZh: '将神话中的火马重新配置为一个表演性装置，通过笨拙、情感化的反应来中断效率驱动的服务逻辑。',
-        indexStatement: 'Taming Theatre reconfigures the mythological figure of the Fire Horse—traditionally associated with speed, power, and inevitable domestication—into a performative technological apparatus.',
-        indexStatementZh: '《驯服戏剧》将火马这一神话形象——传统上与速度、力量和不可避免的驯化相关联——重新配置为一个表演性技术装置。',
+        indexStatement: 'Obedience Play reconfigures the mythological figure of the Fire Horse—traditionally associated with speed, power, and inevitable domestication—into a performative technological apparatus.',
+        indexStatementZh: '《Obedience Play》将火马这一神话形象——传统上与速度、力量和不可避免的驯化相关联——重新配置为一个表演性技术装置。',
         systemStructure: {
             input: 'Temperature, humidity, environmental noise',
             inputZh: '温度、湿度、环境噪音',
@@ -48,9 +48,9 @@ const worksData = [
     },
     { 
         slug: 'where-is-the-price',
-        name: 'Where is the price',
+        name: 'Where Is the Price',
         nameZh: '代价在哪里',
-        nameEn: 'Where is the price', 
+        nameEn: 'Where Is the Price', 
         year: 2025,
         type: 'Installation',
         typeZh: '装置',
@@ -87,7 +87,7 @@ const worksData = [
             '提取材料的动画流动'
         ],
         exhibitionEvidence: [],
-        relatedWorks: ['newman', 'huoma']
+        relatedWorks: ['newman', 'obedience-play']
     },
     { 
         slug: 'newman',
@@ -133,7 +133,7 @@ const worksData = [
             '电动滑板车作为坐骑'
         ],
         exhibitionEvidence: [],
-        relatedWorks: ['where-is-the-price', 'huoma']
+        relatedWorks: ['where-is-the-price', 'obedience-play']
     },
     { 
         slug: 'consumable-icons',
@@ -182,9 +182,9 @@ const worksData = [
     },
     { 
         slug: 'the-block-and-the-tower',
-        name: 'The block and the tower',
+        name: 'The Block and the Tower',
         nameZh: '方块与塔',
-        nameEn: 'The block and the tower', 
+        nameEn: 'The Block and the Tower', 
         year: 2024,
         type: 'Installation',
         typeZh: '装置',
@@ -323,9 +323,9 @@ const worksData = [
     },
     { 
         slug: 'the-awkward-relationship',
-        name: 'AWKWARD RELATIONSHIP',
+        name: 'Awkward Relationship',
         nameZh: '尴尬的关系',
-        nameEn: 'AWKWARD RELATIONSHIP', 
+        nameEn: 'Awkward Relationship', 
         year: 2024,
         type: 'Video',
         typeZh: '视频',
@@ -368,9 +368,9 @@ const worksData = [
     },
     { 
         slug: 'machine-relics',
-        name: 'MACHINE RELICS',
+        name: 'Machine Relics',
         nameZh: '机器遗物',
-        nameEn: 'MACHINE RELICS', 
+        nameEn: 'Machine Relics', 
         year: 2024,
         type: 'Print',
         typeZh: '印刷',

@@ -4,22 +4,22 @@
     if (artworks.length === 0) return;
 
     const academicEdges = [
-        { source: 'Where is the price', target: 'Canit', weight: 0.9 },
-        { source: 'Where is the price', target: 'New Man', weight: 0.8 },
-        { source: 'Where is the price', target: 'MACHINE RELICS', weight: 0.7 },
-        { source: 'Where is the price', target: 'AWKWARD RELATIONSHIP', weight: 0.6 },
+        { source: 'Where Is the Price', target: 'Canit', weight: 0.9 },
+        { source: 'Where Is the Price', target: 'New Man', weight: 0.8 },
+        { source: 'Where Is the Price', target: 'Machine Relics', weight: 0.7 },
+        { source: 'Where Is the Price', target: 'Awkward Relationship', weight: 0.6 },
         { source: 'Canit', target: 'The Fallen Gospel', weight: 0.85 },
-        { source: 'Canit', target: 'The block and the tower', weight: 0.75 },
-        { source: 'The block and the tower', target: 'The Fallen Gospel', weight: 0.8 },
-        { source: 'The Fallen Gospel', target: 'Where is the price', weight: 0.65 },
-        { source: 'New Man', target: 'Taming Theatre', weight: 0.9 },
-        { source: 'Taming Theatre', target: 'Where is the price', weight: 0.5 },
-        { source: 'MACHINE RELICS', target: 'Cleansing Objects', weight: 0.9 },
-        { source: 'MACHINE RELICS', target: 'Mythical Creations of the Ages', weight: 0.85 },
+        { source: 'Canit', target: 'The Block and the Tower', weight: 0.75 },
+        { source: 'The Block and the Tower', target: 'The Fallen Gospel', weight: 0.8 },
+        { source: 'The Fallen Gospel', target: 'Where Is the Price', weight: 0.65 },
+        { source: 'New Man', target: 'Obedience Play', weight: 0.9 },
+        { source: 'Obedience Play', target: 'Where Is the Price', weight: 0.5 },
+        { source: 'Machine Relics', target: 'Cleansing Objects', weight: 0.9 },
+        { source: 'Machine Relics', target: 'Mythical Creations of the Ages', weight: 0.85 },
         { source: 'Cleansing Objects', target: 'Mythical Creations of the Ages', weight: 0.85 },
-        { source: 'Cleansing Objects', target: 'Where is the price', weight: 0.4 },
-        { source: 'AWKWARD RELATIONSHIP', target: 'Treasure of the Mundane World', weight: 0.8 },
-        { source: 'Treasure of the Mundane World', target: 'Where is the price', weight: 0.4 }
+        { source: 'Cleansing Objects', target: 'Where Is the Price', weight: 0.4 },
+        { source: 'Awkward Relationship', target: 'Treasure of the Mundane World', weight: 0.8 },
+        { source: 'Treasure of the Mundane World', target: 'Where Is the Price', weight: 0.4 }
     ];
 
     const container = document.getElementById('map-container');
@@ -121,7 +121,7 @@
     const nodeMap = {};
     artworks.forEach(a => nodeMap[a.name] = { x: a.x * plotWidth + padding, y: a.y * plotHeight + padding });
 
-    const coreNodePos = nodeMap['Where is the price'] || { x: width/2, y: height/2 };
+    const coreNodePos = nodeMap['Where Is the Price'] || { x: width/2, y: height/2 };
 
     let params = {
         bundleCount: 10,
