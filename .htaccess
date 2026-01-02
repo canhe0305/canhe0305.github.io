@@ -1,0 +1,6 @@
+# MIME 类型配置（虽然 GitHub Pages 不支持 .htaccess，但保留作为参考）
+# 实际配置需要在 _config.yml 或通过其他方式处理
+
+AddType video/mp4 .mp4
+AddType video/webm .webm
+AddType video/ogg .ogv

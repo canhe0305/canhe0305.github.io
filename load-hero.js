@@ -24,21 +24,113 @@
         // 尝试加载列表中的第一个文件（最新的）
         if (videoFiles.length > 0) {
             const videoPath = videoFiles[0];
-            setHeroVideo(videoPath);
-            initVideoInteraction();
+            
+            // 检查视频文件是否存在（通过创建 Image 对象测试）
+            const testVideo = document.createElement('video');
+            testVideo.src = videoPath;
+            testVideo.onerror = function() {
+                console.error('视频文件不存在或无法访问:', videoPath);
+                showFallbackImage();
+            };
+            testVideo.onloadeddata = function() {
+                console.log('视频文件存在，开始加载:', videoPath);
+                setHeroVideo(videoPath);
+                initVideoInteraction();
+            };
+            // 触发加载检测
+            testVideo.load();
+            
+            // 如果 3 秒内没有响应，显示备用内容
+            setTimeout(() => {
+                if (testVideo.readyState === 0) {
+                    console.warn('视频加载超时，显示备用图片');
+                    showFallbackImage();
+                }
+            }, 3000);
+        } else {
+            console.warn('没有可用的视频文件');
+            showFallbackImage();
         }
     }
 
     function setHeroVideo(videoPath) {
         const videos = document.querySelectorAll('.hero-video');
-        videos.forEach((video) => {
-            video.src = videoPath;
+        let loadedCount = 0;
+        const totalVideos = videos.length;
+        
+        // 检测文件扩展名，设置正确的 MIME 类型
+        const getMimeType = (path) => {
+            const ext = path.toLowerCase().split('.').pop();
+            const mimeTypes = {
+                'mp4': 'video/mp4',
+                'webm': 'video/webm',
+                'ogv': 'video/ogg',
+                'ogg': 'video/ogg'
+            };
+            return mimeTypes[ext] || 'video/mp4';
+        };
+        
+        const mimeType = getMimeType(videoPath);
+        
+        videos.forEach((video, index) => {
+            // 清除旧的源
+            video.innerHTML = '';
+            
+            // 创建 source 元素并指定 MIME 类型
+            const source = document.createElement('source');
+            source.src = videoPath;
+            source.type = mimeType;
+            video.appendChild(source);
+            
+            // 添加错误处理
+            video.onerror = function(e) {
+                console.error('视频加载失败:', videoPath, 'MIME类型:', mimeType, '索引:', index, e);
+                // 如果所有视频都加载失败，显示备用内容
+                loadedCount++;
+                if (loadedCount === totalVideos) {
+                    console.warn('所有视频加载失败，显示备用图片');
+                    showFallbackImage();
+                }
+            };
+            
+            // 添加加载成功检测
+            video.onloadeddata = function() {
+                loadedCount++;
+                console.log('视频加载成功:', videoPath, 'MIME类型:', mimeType, `(${loadedCount}/${totalVideos})`);
+                
+                // 所有视频加载成功后，尝试播放
+                if (loadedCount === totalVideos) {
+                    videos.forEach((v) => {
+                        v.play().catch(error => {
+                            console.warn('视频自动播放失败:', error);
+                            // 如果自动播放失败，尝试用户交互后播放
+                            document.addEventListener('click', function playOnClick() {
+                                videos.forEach(v => v.play().catch(() => {}));
+                                document.removeEventListener('click', playOnClick);
+                            }, { once: true });
+                        });
+                    });
+                }
+            };
+            
+            // 添加 canplaythrough 事件作为备用
+            video.oncanplaythrough = function() {
+                console.log('视频可以播放:', videoPath);
+            };
+            
+            // 添加 preload 属性确保视频预加载
+            video.preload = 'auto';
             video.load();
-            // 确保视频自动播放
-            video.play().catch(error => {
-                console.log('视频自动播放失败:', error);
-            });
         });
+    }
+    
+    function showFallbackImage() {
+        // 如果视频加载失败，确保图片层可见
+        const imageLayer = document.querySelector('.hero-image-layer');
+        if (imageLayer) {
+            imageLayer.style.opacity = '1';
+            imageLayer.style.zIndex = '10';
+        }
     }
 
     function initVideoInteraction() {

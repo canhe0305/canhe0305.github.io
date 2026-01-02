@@ -1,0 +1,14 @@
+# GitHub Pages 配置
+plugins:
+  - jekyll-feed
+
+# 配置 MIME 类型
+include:
+  - .htaccess
+
+# 确保视频文件被正确服务
+defaults:
+  - scope:
+      path: "img"
+    values:
+      layout: null
