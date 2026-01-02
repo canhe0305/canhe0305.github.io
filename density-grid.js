@@ -46,7 +46,7 @@
         <div class="control-panel">
             <div class="ctrl-row">
                 <label>Fiber Density (密度)</label>
-                <input type="range" id="ctrl-bundle" min="10" max="100" value="40">
+                <input type="range" id="ctrl-bundle" min="10" max="100" value="10">
             </div>
             <div class="ctrl-row">
                 <label>Entanglement (纠缠)</label>
@@ -58,11 +58,7 @@
             </div>
             <div class="ctrl-row">
                 <label>Tension (张力)</label>
-                <input type="range" id="ctrl-force" min="0" max="100" value="60">
-            </div>
-            <div class="ctrl-row">
-                <label>Ink Color (Hue)</label>
-                <input type="range" id="ctrl-hue" min="0" max="360" value="200">
+                <input type="range" id="ctrl-force" min="0" max="100" value="100">
             </div>
         </div>
     `;
@@ -128,11 +124,10 @@
     const coreNodePos = nodeMap['Where is the price'] || { x: width/2, y: height/2 };
 
     let params = {
-        bundleCount: 40,
-        attractionForce: 0.6,
+        bundleCount: 10,
+        attractionForce: 1.0,
         spread: 20,
         fiberWidth: 0.8,
-        hue: 200,
         inkColor: "20, 25, 30"
     };
 
@@ -140,19 +135,6 @@
     document.getElementById('ctrl-force').oninput = (e) => params.attractionForce = +e.target.value / 100;
     document.getElementById('ctrl-spread').oninput = (e) => params.spread = +e.target.value;
     document.getElementById('ctrl-width').oninput = (e) => params.fiberWidth = +e.target.value / 10;
-    document.getElementById('ctrl-hue').oninput = (e) => {
-        params.hue = +e.target.value;
-        const c = hslToRgb(params.hue / 360, 0.15, 0.1);
-        params.inkColor = `${c.r}, ${c.g}, ${c.b}`;
-    };
-
-    function hslToRgb(h, s, l) {
-        let r, g, b;
-        const q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q;
-        const f = (p, q, t) => { if (t < 0) t += 1; if (t > 1) t -= 1; if (t < 1/6) return p + (q - p) * 6 * t; if (t < 1/2) return q; if (t < 2/3) return p + (q - p) * (2/3 - t) * 6; return p; };
-        r = f(p, q, h + 1/3); g = f(p, q, h); b = f(p, q, h - 1/3);
-        return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
-    }
 
     class Attractor {
         constructor(isCore = false) {

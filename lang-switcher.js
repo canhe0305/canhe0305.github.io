@@ -85,6 +85,22 @@
             }
         });
 
+        // 更新页面标题（<title> 标签）
+        const pageTitle = document.querySelector('title');
+        if (pageTitle) {
+            const titleText = pageTitle.textContent;
+            const brandName = lang === 'zh' ? '能祂' : 'CANHE';
+            // 替换标题中的品牌名称
+            let newTitle = titleText;
+            // 替换单独的 "CANHE" 或 "能祂"
+            if (lang === 'zh') {
+                newTitle = newTitle.replace(/CANHE/g, brandName);
+            } else {
+                newTitle = newTitle.replace(/能祂/g, brandName);
+            }
+            pageTitle.textContent = newTitle;
+        }
+
         // 更新语言切换按钮状态
         const langButtons = document.querySelectorAll('.lang-switcher-btn');
         langButtons.forEach(btn => {
