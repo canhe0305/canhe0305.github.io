@@ -12,21 +12,17 @@
         'contact': {
             title: '联系方式',
             content: `
-                <div style="margin-bottom: 32px;">
-                    <p class="about-text" style="margin-bottom: 8px; color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">Wechat</p>
-                    <p class="about-text" style="margin-bottom: 24px;">mysterych924</p>
+                <div style="margin-bottom: 24px;">
+                    <p class="about-text">WeChat：mysterych924</p>
                 </div>
-                <div style="margin-bottom: 32px;">
-                    <p class="about-text" style="margin-bottom: 8px; color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">Email</p>
-                    <p class="about-text" style="margin-bottom: 24px;"><a href="mailto:hermeit@outlook.com">hermeit@outlook.com</a></p>
+                <div style="margin-bottom: 24px;">
+                    <p class="about-text">Email：<a href="mailto:hermeit@outlook.com">hermeit@outlook.com</a></p>
                 </div>
-                <div style="margin-bottom: 32px;">
-                    <p class="about-text" style="margin-bottom: 8px; color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">Rednote / Instagram</p>
-                    <p class="about-text" style="margin-bottom: 24px;">canhe_ych</p>
+                <div style="margin-bottom: 24px;">
+                    <p class="about-text">Instagram/ Rednote : canhe_ych <a href="https://www.instagram.com/canhe_ych/" target="_blank" style="color: inherit; text-decoration: underline; opacity: 0.7;">↗</a></p>
                 </div>
-                <div style="margin-bottom: 32px;">
-                    <p class="about-text" style="margin-bottom: 8px; color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">Artool</p>
-                    <p class="about-text"><a href="https://artool.top" target="_blank">artool.top</a></p>
+                <div style="margin-bottom: 24px;">
+                    <p class="about-text">Open Art Tool Web: <a href="https://artool.top" target="_blank">artool.top</a></p>
                 </div>
             `
         },
@@ -66,21 +62,17 @@
         'contact': {
             title: 'Contact',
             content: `
-                <div style="margin-bottom: 32px;">
-                    <p class="about-text" style="margin-bottom: 8px; color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">Wechat</p>
-                    <p class="about-text" style="margin-bottom: 24px;">mysterych924</p>
+                <div style="margin-bottom: 24px;">
+                    <p class="about-text">WeChat：mysterych924</p>
                 </div>
-                <div style="margin-bottom: 32px;">
-                    <p class="about-text" style="margin-bottom: 8px; color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">Email</p>
-                    <p class="about-text" style="margin-bottom: 24px;"><a href="mailto:hermeit@outlook.com">hermeit@outlook.com</a></p>
+                <div style="margin-bottom: 24px;">
+                    <p class="about-text">Email：<a href="mailto:hermeit@outlook.com">hermeit@outlook.com</a></p>
                 </div>
-                <div style="margin-bottom: 32px;">
-                    <p class="about-text" style="margin-bottom: 8px; color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">Rednote / Instagram</p>
-                    <p class="about-text" style="margin-bottom: 24px;">canhe_ych</p>
+                <div style="margin-bottom: 24px;">
+                    <p class="about-text">Instagram/ Rednote : canhe_ych <a href="https://www.instagram.com/canhe_ych/" target="_blank" style="color: inherit; text-decoration: underline; opacity: 0.7;">↗</a></p>
                 </div>
-                <div style="margin-bottom: 32px;">
-                    <p class="about-text" style="margin-bottom: 8px; color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">Artool</p>
-                    <p class="about-text"><a href="https://artool.top" target="_blank">artool.top</a></p>
+                <div style="margin-bottom: 24px;">
+                    <p class="about-text">Open Art Tool Web: <a href="https://artool.top" target="_blank">artool.top</a></p>
                 </div>
             `
         },
