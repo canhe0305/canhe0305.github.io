@@ -3,117 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CANHE ART</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>CANHE能祂</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="lang-switcher.js"></script>
+    <script src="load-hero.js"></script>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="logo">仁善慈悲帝</div>
-        <div class="menu-toggle" id="menuToggle">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="active">首页</a></li>
-            <li><a href="works.html">作品</a></li>
-            <li><a href="exercise.html">练习</a></li>
-            <li><a href="about-contact.html">关于</a></li>
-            <li><a href="journal.html">日志</a></li>
-            <li><a href="tutorial.html">教程</a></li>
-        </ul>
-    </nav>
-
-    <!-- 英雄区域 -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>能祂</h1>
-            <p>CANHE YANG</p>
-            <p class="subtitle">异时性设计 | 技术批判 | 激进艺术</p>
-        </div>
-        <div class="scroll-indicator">
-            <div class="rotating-square"></div>
-            <i class="fas fa-chevron-down bouncing-arrow"></i>
-        </div>
-    </section>
-
-    <!-- 简介区域 -->
-    <section class="intro">
-        <div class="container">
-            <p>艺术和设计的叛徒</p>
-        </div>
-    </section>
-
-    <!-- 最新作品展示 -->
-    <section class="latest-works">
-        <div class="section-title">
-            <h2>最新作品</h2>
-        </div>
-        <div class="latest-works-grid">
-            <div class="latest-work-item">
-                <div class="work-image">
-                    <img src="images/work/latest artwork.jpg" alt="最新艺术作品">
-                    <div class="work-overlay">
-                        <h3>最新艺术作品</h3>
-                        <p>Latest Artwork</p>
-                    </div>
-                </div>
+    <!-- Hero Section with Kaleidoscope Effect -->
+    <section class="hero">
+        <div class="hero-mirror-container">
+            <div class="hero-layer hero-original">
+                <video class="hero-video" autoplay loop muted playsinline></video>
             </div>
-            <div class="latest-work-item">
-                <div class="work-image">
-                    <img src="images/work/latest designwork.jpg" alt="最新设计作品">
-                    <div class="work-overlay">
-                        <h3>最新设计作品</h3>
-                        <p>Latest Designwork</p>
-                    </div>
-                </div>
+            <div class="hero-layer hero-flip-h">
+                <video class="hero-video" autoplay loop muted playsinline></video>
+            </div>
+            <div class="hero-layer hero-flip-v">
+                <video class="hero-video" autoplay loop muted playsinline></video>
+            </div>
+            <div class="hero-layer hero-flip-both">
+                <video class="hero-video" autoplay loop muted playsinline></video>
             </div>
         </div>
-        <a href="works.html" class="view-all-works">查看全部作品</a>
-    </section>
-
-    <!-- 最新日志 -->
-    <section class="latest-journal">
-        <div class="section-title">
-            <h2>最新日志</h2>
+        
+        <!-- Hidden Image Layer -->
+        <div class="hero-image-layer">
+            <img src="img/latest work/huanglong.jpg" alt="Huanglong" class="hero-center-image">
+            <div class="hero-image-caption">Obedience Play，Huanglong Hotel，2025</div>
         </div>
-        <div class="journal-container">
-            <div class="journal-item">
-                <div class="journal-date">2023.05.15</div>
-                <h3>设计思考：关于异时性设计</h3>
-                <p>异时性设计是我在回国后不断拜访同仁后的思考结果，我将在今年正式开始实践这个理论...</p>
-                <a href="heterochronic-design.html" class="read-more">阅读更多</a>
+        
+        <!-- Header Overlay -->
+        <header class="hero-header">
+            <div class="hero-header-content">
+                <a href="index.html" class="hero-site-title">CANHE能祂</a>
+                <nav class="hero-nav">
+                    <a href="work.html">Works</a><span class="nav-sep">/</span><a href="#">Writing</a><span class="nav-sep">/</span><a href="about.html">About</a>
+                </nav>
             </div>
-        </div>
+        </header>
     </section>
-
-    <!-- 工作坊介绍 -->
-    <section class="workshop-intro">
-        <div class="section-title">
-            <h2>艺术实践者的写作入门工作坊</h2>
-        </div>
-        <div class="workshop-container">
-            <div class="workshop-item">
-                <h3>学术写作指导</h3>
-                <p>从基础入门，到专业表达，让你的艺术思考更有力量。适合正在准备毕业论文、申请硕士或需要撰写策展文本的创作者。</p>
-                <a href="tutorial.html" class="read-more">了解详情</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 仁善慈悲帝保留所有权利.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
-
 </html>
-
-
-
